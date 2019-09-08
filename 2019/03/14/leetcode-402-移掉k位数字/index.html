@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.题目描述给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:  num 的长度小于 10002 且 ≥ k。  num 不会包含任何前导零。  示例如下：  1234567891011121314示例1：输入: num = &quot;1432219&quot;, k = 3输出: &quot;1219&quot;解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。">
+<meta name="description" content="1.题目描述给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:  num 的长度小于 10002 且 ≥ k。  num 不会包含任何前导零。  示例如下：  1234567891011121314示例1：输入: num = &amp;quot;1432219&amp;quot;, k = 3输出: &amp;quot;1219&amp;quot;解释: 移除掉三个数字 4, 3, 和">
 <meta name="keywords" content="leetcode贪心法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 402-移掉k位数字">
 <meta property="og:url" content="https://weishixin.github.io/2019/03/14/leetcode-402-移掉k位数字/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.题目描述给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:  num 的长度小于 10002 且 ≥ k。  num 不会包含任何前导零。  示例如下：  1234567891011121314示例1：输入: num = &quot;1432219&quot;, k = 3输出: &quot;1219&quot;解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。">
+<meta property="og:site_name" content="魏小威的个人博客">
+<meta property="og:description" content="1.题目描述给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:  num 的长度小于 10002 且 ≥ k。  num 不会包含任何前导零。  示例如下：  1234567891011121314示例1：输入: num = &amp;quot;1432219&amp;quot;, k = 3输出: &amp;quot;1219&amp;quot;解释: 移除掉三个数字 4, 3, 和">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-03-14T13:04:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode 402-移掉k位数字">
-<meta name="twitter:description" content="1.题目描述给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:  num 的长度小于 10002 且 ≥ k。  num 不会包含任何前导零。  示例如下：  1234567891011121314示例1：输入: num = &quot;1432219&quot;, k = 3输出: &quot;1219&quot;解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。">
+<meta name="twitter:description" content="1.题目描述给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:  num 的长度小于 10002 且 ≥ k。  num 不会包含任何前导零。  示例如下：  1234567891011121314示例1：输入: num = &amp;quot;1432219&amp;quot;, k = 3输出: &amp;quot;1219&amp;quot;解释: 移除掉三个数字 4, 3, 和">
 
 
 
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -126,7 +126,7 @@
 
 
 
-  <title>leetcode 402-移掉k位数字 | Hexo</title>
+  <title>leetcode 402-移掉k位数字 | 魏小威的个人博客</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">魏小威的个人博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -242,7 +242,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="魏小威的个人博客">
     </span>
 
     
@@ -321,7 +321,7 @@
 <br>
 示例如下：<br>
 
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例<span class="number">1</span>：</span><br><span class="line">输入: <span class="attr">num</span> = <span class="string">"1432219"</span>, <span class="attr">k</span> = <span class="number">3</span></span><br><span class="line">输出: <span class="string">"1219"</span></span><br><span class="line">解释: 移除掉三个数字 <span class="number">4</span>, <span class="number">3</span>, 和 <span class="number">2</span> 形成一个新的最小的数字 <span class="number">1219</span>。</span><br><span class="line"></span><br><span class="line">示例<span class="number">2</span>：</span><br><span class="line">输入: <span class="attr">num</span> = <span class="string">"10200"</span>, <span class="attr">k</span> = <span class="number">1</span></span><br><span class="line">输出: <span class="string">"200"</span></span><br><span class="line">解释: 移掉首位的 <span class="number">1</span> 剩下的数字为 <span class="number">200</span>. 注意输出不能有任何前导零。</span><br><span class="line"></span><br><span class="line">示例<span class="number">3</span>：</span><br><span class="line">输入: <span class="attr">num</span> = <span class="string">"10"</span>, <span class="attr">k</span> = <span class="number">2</span></span><br><span class="line">输出: <span class="string">"0"</span></span><br><span class="line">解释: 从原数字移除所有的数字，剩余为空就是<span class="number">0</span>。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">输入: num = &quot;1432219&quot;, k = 3</span><br><span class="line">输出: &quot;1219&quot;</span><br><span class="line">解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。</span><br><span class="line"></span><br><span class="line">示例2：</span><br><span class="line">输入: num = &quot;10200&quot;, k = 1</span><br><span class="line">输出: &quot;200&quot;</span><br><span class="line">解释: 移掉首位的 1 剩下的数字为 200. 注意输出不能有任何前导零。</span><br><span class="line"></span><br><span class="line">示例3：</span><br><span class="line">输入: num = &quot;10&quot;, k = 2</span><br><span class="line">输出: &quot;0&quot;</span><br><span class="line">解释: 从原数字移除所有的数字，剩余为空就是0。</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-解析"><a href="#2-解析" class="headerlink" title="2.解析"></a>2.解析</h2><p>&nbsp;&nbsp;参考博文：<a href="https://blog.csdn.net/zxm1306192988/article/details/80725404" target="_blank" rel="noopener">https://blog.csdn.net/zxm1306192988/article/details/80725404</a><br><br><br>大体思想是贪心法：使用一个栈，循环遍历数组，如果当前值比栈顶的字符小，栈顶元素出栈；否则让当前字符进栈。最后判断所得字符前面是不是有0,找到非0开头的第一个数的索引，找到它到len(num)-k的所有字符序列<br></p>
 <p>Python3实现代码：<br></p>
@@ -441,7 +441,7 @@
               <img class="site-author-image" itemprop="image" src="/images/aavatar_zoro.jpeg" alt="WeiShixin">
             
               <p class="site-author-name" itemprop="name">WeiShixin</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到魏小威的新世界！</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -535,7 +535,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -654,6 +654,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
