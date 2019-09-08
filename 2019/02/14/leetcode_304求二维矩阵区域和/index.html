@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="leetcode 304. Range Sum Query 2D - Immutable 结题报告1. 题目描述：&amp;nbsp;&amp;nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and low">
+<meta name="description" content="leetcode 304. Range Sum Query 2D - Immutable 解题报告1. 题目描述：&amp;nbsp;&amp;nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and low">
 <meta name="keywords" content="leetcode动态规划篇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 304. Range Sum Query 2D - Immutable 解题报告">
 <meta property="og:url" content="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/index.html">
 <meta property="og:site_name" content="魏小威的个人博客">
-<meta property="og:description" content="leetcode 304. Range Sum Query 2D - Immutable 结题报告1. 题目描述：&amp;nbsp;&amp;nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and low">
+<meta property="og:description" content="leetcode 304. Range Sum Query 2D - Immutable 解题报告1. 题目描述：&amp;nbsp;&amp;nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and low">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/rectangle1.jpg">
 <meta property="og:image" content="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/sum(OA).png">
 <meta property="og:image" content="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/sum(OA).png">
 <meta property="og:image" content="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/sum(OA).png">
-<meta property="og:updated_time" content="2019-09-08T09:16:04.693Z">
+<meta property="og:updated_time" content="2019-09-08T09:22:05.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode 304. Range Sum Query 2D - Immutable 解题报告">
-<meta name="twitter:description" content="leetcode 304. Range Sum Query 2D - Immutable 结题报告1. 题目描述：&amp;nbsp;&amp;nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and low">
+<meta name="twitter:description" content="leetcode 304. Range Sum Query 2D - Immutable 解题报告1. 题目描述：&amp;nbsp;&amp;nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and low">
 <meta name="twitter:image" content="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/rectangle1.jpg">
 
 
@@ -342,7 +342,7 @@
       
 
       
-        <h2 id="leetcode-304-Range-Sum-Query-2D-Immutable-结题报告"><a href="#leetcode-304-Range-Sum-Query-2D-Immutable-结题报告" class="headerlink" title="leetcode 304. Range Sum Query 2D - Immutable 结题报告"></a>leetcode 304. Range Sum Query 2D - Immutable 结题报告</h2><h3 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1. 题目描述："></a>1. 题目描述：</h3><p>&nbsp;&nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</p>
+        <h2 id="leetcode-304-Range-Sum-Query-2D-Immutable-解题报告"><a href="#leetcode-304-Range-Sum-Query-2D-Immutable-解题报告" class="headerlink" title="leetcode 304. Range Sum Query 2D - Immutable 解题报告"></a>leetcode 304. Range Sum Query 2D - Immutable 解题报告</h2><h3 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1. 题目描述："></a>1. 题目描述：</h3><p>&nbsp;&nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</p>
 <h4 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Given matrix = [</span><br><span class="line">  [3, 0, 1, 4, 2],</span><br><span class="line">  [5, 6, 3, 2, 1],</span><br><span class="line">  [1, 2, 0, 1, 5],</span><br><span class="line">  [4, 1, 0, 1, 7],</span><br><span class="line">  [1, 0, 3, 0, 5]</span><br><span class="line">]</span><br><span class="line">sumRegion(2, 1, 4, 3) -&gt; 8</span><br><span class="line">sumRegion(1, 1, 2, 2) -&gt; 11</span><br><span class="line">sumRegion(1, 2, 2, 4) -&gt; 12</span><br></pre></td></tr></table></figure>
 
 <h4 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h4><ol>
@@ -532,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode-304-Range-Sum-Query-2D-Immutable-结题报告"><span class="nav-number">1.</span> <span class="nav-text">leetcode 304. Range Sum Query 2D - Immutable 结题报告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-题目描述："><span class="nav-number">1.1.</span> <span class="nav-text">1. 题目描述：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.1.1.</span> <span class="nav-text">Example:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Note"><span class="nav-number">1.1.2.</span> <span class="nav-text">Note:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-思路分析："><span class="nav-number">1.2.</span> <span class="nav-text">2. 思路分析：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode-304-Range-Sum-Query-2D-Immutable-解题报告"><span class="nav-number">1.</span> <span class="nav-text">leetcode 304. Range Sum Query 2D - Immutable 解题报告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-题目描述："><span class="nav-number">1.1.</span> <span class="nav-text">1. 题目描述：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.1.1.</span> <span class="nav-text">Example:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Note"><span class="nav-number">1.1.2.</span> <span class="nav-text">Note:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-思路分析："><span class="nav-number">1.2.</span> <span class="nav-text">2. 思路分析：</span></a></li></ol></li></ol></div>
             
 
           </div>
