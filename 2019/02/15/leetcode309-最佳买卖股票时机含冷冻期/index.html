@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>leetcode309_最佳买卖股票时机含冷冻期 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.题目描述：Say you have an array for which the ith element is the price of a given stock on day i.Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy">
+<meta name="keywords" content="leetcode动态规划篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode309_最佳买卖股票时机含冷冻期">
+<meta property="og:url" content="https://weishixin.github.io/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.题目描述：Say you have an array for which the ith element is the price of a given stock on day i.Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-15T09:32:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode309_最佳买卖股票时机含冷冻期">
+<meta name="twitter:description" content="1.题目描述：Say you have an array for which the ith element is the price of a given stock on day i.Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://weishixin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcode309-最佳买卖股票时机含冷冻期" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/" class="article-date">
+  <time datetime="2019-02-15T03:40:23.000Z" itemprop="datePublished">2019-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      leetcode309_最佳买卖股票时机含冷冻期
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1.题目描述："></a>1.题目描述：</h2><p>Say you have an array for which the i<sup>th</sup> element is the price of a given stock on day i.<br><br>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:<br><br>·  You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).<br><br>·  After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)<br></p>
+<h3 id="Example："><a href="#Example：" class="headerlink" title="Example："></a>Example：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,0,2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: transactions = [buy, sell, cooldown, buy, sell]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-思路分析："><a href="#2-思路分析：" class="headerlink" title="2.思路分析："></a>2.思路分析：</h2><h3 id="动态规划："><a href="#动态规划：" class="headerlink" title="动态规划："></a>动态规划：</h3><p>&nbsp;&nbsp;利用<strong>三个dp数组</strong>来表示在位置i上的执行（<strong>buy</strong>,<strong>sell</strong>和<strong>cooldown</strong>）之一所能获得的最大利润。<br><br>&nbsp;&nbsp;对每个dp数组如下维护：<br></p>
+<ol>
+<li>dp_cooldown数组，在位置i上执行冷冻操作，则说明i-1位置上执行的必然是sell操作</li>
+<li>dp_sell数组，在位置i上执行sell操作，要想获得最大利润，有如下情况：<br><br> 1) <strong>i-1</strong>位置之前已经拥有股票了，此时在<strong>i-1</strong>位置也可以卖，为了比较出最大的利润，必须也要在<strong>i-1</strong>卖一下<br> 2) <strong>i-1</strong>位置才买了股票，此时正好在<strong>i</strong>位置上卖出，此时的利润需要计算一下</li>
+<li>dp_buy数组，在位置i上执行buy操作，要想获得最大利润，有如下情况：<br> 1) <em>i-2</em>位置之前已经卖掉了股票，并且已经过了冷冻期，换言之就是<em>i-1</em>位置之前不持有股票，此时在<em>i-1</em>位置上也可以买进股票<br> 2) <em>i-2</em>位置持有股票并正好卖出股票，则正好<em>i-1</em>位置是冷冻期，在<em>i</em>位置上买进股票<br><br></li>
+<li>最后求三个dp数组的最后元素的最大值，当然我易得肯定不会再最后一天买进股票的，so最后的maxprofit = max(dp_cooldown[len(prices)-1] , dp_sell[len(prices)-1])<br>
+
+
+</li>
+</ol>
+<p>&nbsp;&nbsp;AC代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type prices: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">            思路：</span></span><br><span class="line"><span class="string">            动态规划：</span></span><br><span class="line"><span class="string">            利用三个dp数组来表示在位置i上的执行（buy,sell和cooldown）之一所能获得的最大利润</span></span><br><span class="line"><span class="string">            对每个dp数组如下维护：</span></span><br><span class="line"><span class="string">            1. dp_cooldown数组，在位置i上执行冷冻操作，则说明i-1位置上执行的必然是sell操作</span></span><br><span class="line"><span class="string">            2. dp_sell数组，在位置i上执行sell操作，要想获得最大利润，有如下情况：</span></span><br><span class="line"><span class="string">                1)  i-1位置之前已经拥有股票了，此时在i-1位置也可以卖，为了比较出最大的利润，必须也要在i-1卖一下</span></span><br><span class="line"><span class="string">                2)  i-1位置才买了股票，此时正好在i位置上卖出，此时的利润需要计算一下</span></span><br><span class="line"><span class="string">            3. dp_buy数组，在位置i上执行buy操作，要想获得最大利润，有如下情况：</span></span><br><span class="line"><span class="string">                1)  i-2位置之前已经卖掉了股票，并且已经过了冷冻期，换言之就是i-1位置之前不持有股票，此时在i-1位置上也可以买进股票</span></span><br><span class="line"><span class="string">                2)  i-2位置持有股票并正好卖出股票，则正好i-1位置是冷冻期，在i位置上买进股票</span></span><br><span class="line"><span class="string">            最后求三个dp数组的最后元素的最大值，当然我易得肯定不会再最后一天买进股票的，</span></span><br><span class="line"><span class="string">            so最后的maxprofit = max(dp_cooldown[len(prices)-1] , dp_sell[len(prices)-1])</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> prices:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        lenOfPrices = len(prices)</span><br><span class="line">        dp_buy , dp_sell , dp_cooldown = [<span class="number">0</span>] * lenOfPrices, [<span class="number">0</span>]*lenOfPrices , [<span class="number">0</span>]*lenOfPrices</span><br><span class="line">        dp_buy[<span class="number">0</span>] = -prices[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, lenOfPrices):</span><br><span class="line">            dp_cooldown[i] = dp_sell[i<span class="number">-1</span>]</span><br><span class="line">            dp_sell[i] = max(dp_buy[i<span class="number">-1</span>]+prices[i] , dp_sell[i<span class="number">-1</span>] )</span><br><span class="line">            dp_buy[i] = max( dp_cooldown[i<span class="number">-1</span>]-prices[i] , dp_buy[i<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">return</span> max(dp_cooldown[lenOfPrices<span class="number">-1</span>] , dp_sell[lenOfPrices<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">prices = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">2</span>]</span><br><span class="line">print(solution.maxProfit(prices))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://weishixin.github.io/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/" data-id="ck0akgc81000dhd6sozsqn8xx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode动态规划篇/">leetcode动态规划篇</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/26/高级算法Homework3-8-分配问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          高级算法Homework3_1_分配问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/14/leetcode304-leetcode-304-Range-Sum-Query-2D-Immutable-解题报告/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">leetcode304_leetcode 304. Range Sum Query 2D - Immutable 解题报告</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode动态规划篇/">leetcode动态规划篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode贪心法/">leetcode贪心法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秋招面试/">秋招面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高级算法课/">高级算法课</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/leetcode动态规划篇/" style="font-size: 20px;">leetcode动态规划篇</a> <a href="/tags/leetcode贪心法/" style="font-size: 10px;">leetcode贪心法</a> <a href="/tags/秋招面试/" style="font-size: 10px;">秋招面试</a> <a href="/tags/高级算法课/" style="font-size: 10px;">高级算法课</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/18/面试复习技术总体思路/">面试复习技术总体思路</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/18/leetcode-740-删除与获得点数/">leetcode 740-删除与获得点数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/18/leetcode-718-最长重复子数组/">leetcode 718-最长重复子数组</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/leetcode-486-预测赢家/">leetcode 486-预测赢家</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/leetcode-402-移掉k位数字/">leetcode 402-移掉k位数字</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WeiShixin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

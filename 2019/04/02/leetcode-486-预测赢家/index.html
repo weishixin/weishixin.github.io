@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>leetcode 486-预测赢家 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 题目描述给定一个表示分数的非负整数数组。 玩家1从数组任意一端拿取一个分数，随后玩家2继续从剩余数组任意一端拿取分数，然后玩家1拿，……。每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。直到没有剩余分数可取时游戏结束。最终获得分数总和最多的玩家获胜。 给定一个表示分数的数组，预测玩家1是否会成为赢家。你可以假设每个玩家的玩法都会使他的分数最大化。 示例如下： 1234567891011">
+<meta name="keywords" content="leetcode动态规划篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode 486-预测赢家">
+<meta property="og:url" content="https://weishixin.github.io/2019/04/02/leetcode-486-预测赢家/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 题目描述给定一个表示分数的非负整数数组。 玩家1从数组任意一端拿取一个分数，随后玩家2继续从剩余数组任意一端拿取分数，然后玩家1拿，……。每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。直到没有剩余分数可取时游戏结束。最终获得分数总和最多的玩家获胜。 给定一个表示分数的数组，预测玩家1是否会成为赢家。你可以假设每个玩家的玩法都会使他的分数最大化。 示例如下： 1234567891011">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-02T12:58:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode 486-预测赢家">
+<meta name="twitter:description" content="1. 题目描述给定一个表示分数的非负整数数组。 玩家1从数组任意一端拿取一个分数，随后玩家2继续从剩余数组任意一端拿取分数，然后玩家1拿，……。每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。直到没有剩余分数可取时游戏结束。最终获得分数总和最多的玩家获胜。 给定一个表示分数的数组，预测玩家1是否会成为赢家。你可以假设每个玩家的玩法都会使他的分数最大化。 示例如下： 1234567891011">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://weishixin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcode-486-预测赢家" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/02/leetcode-486-预测赢家/" class="article-date">
+  <time datetime="2019-04-02T12:35:07.000Z" itemprop="datePublished">2019-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      leetcode 486-预测赢家
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>给定一个表示分数的非负整数数组。 玩家1从数组任意一端拿取一个分数，随后玩家2继续从剩余数组任意一端拿取分数，然后玩家1拿，……。每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。直到没有剩余分数可取时游戏结束。最终获得分数总和最多的玩家获胜。</p>
+<p>给定一个表示分数的数组，预测玩家1是否会成为赢家。你可以假设每个玩家的玩法都会使他的分数最大化。</p>
+<p>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">输入: [1, 5, 2]</span><br><span class="line">输出: False</span><br><span class="line">解释: 一开始，玩家1可以从1和2中进行选择。</span><br><span class="line">如果他选择2（或者1），那么玩家2可以从1（或者2）和5中进行选择。如果玩家2选择了5，那么玩家1则只剩下1（或者2）可选。</span><br><span class="line">所以，玩家1的最终分数为 1 + 2 = 3，而玩家2为 5。</span><br><span class="line">因此，玩家1永远不会成为赢家，返回 False。</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [1, 5, 233, 7]</span><br><span class="line">输出: True</span><br><span class="line">解释: 玩家1一开始选择1。然后玩家2必须从5和7中进行选择。无论玩家2选择了哪个，玩家1都可以选择233。</span><br><span class="line">最终，玩家1（234分）比玩家2（12分）获得更多的分数，所以返回 True，表示玩家1可以成为赢家。</span><br></pre></td></tr></table></figure>
+
+<p>注意<br><br>1) 1 &lt;= 给定的数组长度 &lt;= 20.<br>2) 数组里所有分数都为非负数且不会大于10000000。<br>3) 如果最终两个玩家的分数相等，那么玩家1仍为赢家。</p>
+<h2 id="2-解析"><a href="#2-解析" class="headerlink" title="2.解析"></a>2.解析</h2><p>  参考花花酱视频：<a href="https://www.bilibili.com/video/av31317000?from=search&amp;seid=2867472786189339769" target="_blank" rel="noopener">https://www.bilibili.com/video/av31317000?from=search&amp;seid=2867472786189339769</a></p>
+<p>  采用min-max策略，使用记忆化递归。<br><br>  使用mem[k]数组记录nums[l]到nums[r]的最大差值为多少。其中$k=l\times num.length+r$.<br>  <br>每一次我们都记录下mem[k]，在递归的时候，查询记忆数组，如果有直接返回，这样可以把时间复杂度降低为$n^{2}$。</p>
+<h2 id="3-Java-实现"><a href="#3-Java-实现" class="headerlink" title="3.Java 实现"></a>3.Java 实现</h2><p>  具体代码如下：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//记忆化递归</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">PredictTheWinner</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        mem = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length*nums.length];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i&lt; mem.length;i++)&#123;</span><br><span class="line">            mem[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> getScore(nums , <span class="number">0</span>, nums.length-<span class="number">1</span>)&gt;= <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> [] mem;<span class="comment">//记忆化数组</span></span><br><span class="line">    <span class="comment">//min-max原则</span></span><br><span class="line">    <span class="comment">//在l到r范围内，我能够取得的最大分数差是多少</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getScore</span><span class="params">(<span class="keyword">int</span> [] nums , <span class="keyword">int</span> l , <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( l==r) <span class="keyword">return</span> nums[l];</span><br><span class="line">        <span class="keyword">int</span> k = l*nums.length + r;</span><br><span class="line">        <span class="keyword">if</span>(mem[k] &gt; <span class="number">0</span> ) <span class="keyword">return</span> mem[k];</span><br><span class="line">        mem[k] = Math.max(nums[l] - getScore(nums , l+<span class="number">1</span>,r) ,</span><br><span class="line">                       nums[r] - getScore(nums,l,r-<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> mem[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://weishixin.github.io/2019/04/02/leetcode-486-预测赢家/" data-id="ck0akgc7t0003hd6sofft32c6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode动态规划篇/">leetcode动态规划篇</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/18/leetcode-718-最长重复子数组/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          leetcode 718-最长重复子数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/14/leetcode-402-移掉k位数字/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">leetcode 402-移掉k位数字</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode动态规划篇/">leetcode动态规划篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode贪心法/">leetcode贪心法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秋招面试/">秋招面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高级算法课/">高级算法课</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/leetcode动态规划篇/" style="font-size: 20px;">leetcode动态规划篇</a> <a href="/tags/leetcode贪心法/" style="font-size: 10px;">leetcode贪心法</a> <a href="/tags/秋招面试/" style="font-size: 10px;">秋招面试</a> <a href="/tags/高级算法课/" style="font-size: 10px;">高级算法课</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/18/面试复习技术总体思路/">面试复习技术总体思路</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/18/leetcode-740-删除与获得点数/">leetcode 740-删除与获得点数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/18/leetcode-718-最长重复子数组/">leetcode 718-最长重复子数组</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/leetcode-486-预测赢家/">leetcode 486-预测赢家</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/leetcode-402-移掉k位数字/">leetcode 402-移掉k位数字</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WeiShixin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://weishixin.github.io/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://weishixin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-leetcode_304求二维矩阵区域和" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/14/leetcode_304求二维矩阵区域和/" class="article-date">
+  <time datetime="2019-02-14T08:28:35.000Z" itemprop="datePublished">2019-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/14/leetcode_304求二维矩阵区域和/">leetcode 304. Range Sum Query 2D - Immutable 结题报告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="leetcode-304-Range-Sum-Query-2D-Immutable-结题报告"><a href="#leetcode-304-Range-Sum-Query-2D-Immutable-结题报告" class="headerlink" title="leetcode 304. Range Sum Query 2D - Immutable 结题报告"></a>leetcode 304. Range Sum Query 2D - Immutable 结题报告</h2><h3 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1. 题目描述："></a>1. 题目描述：</h3><p>&nbsp;&nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Given matrix = [</span><br><span class="line">  [3, 0, 1, 4, 2],</span><br><span class="line">  [5, 6, 3, 2, 1],</span><br><span class="line">  [1, 2, 0, 1, 5],</span><br><span class="line">  [4, 1, 0, 1, 7],</span><br><span class="line">  [1, 0, 3, 0, 5]</span><br><span class="line">]</span><br><span class="line">sumRegion(2, 1, 4, 3) -&gt; 8</span><br><span class="line">sumRegion(1, 1, 2, 2) -&gt; 11</span><br><span class="line">sumRegion(1, 2, 2, 4) -&gt; 12</span><br></pre></td></tr></table></figure>
+
+<h4 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h4><ol>
+<li>You may assume that the matrix does not change.</li>
+<li>There are many calls to sumRegion function.</li>
+<li>You may assume that row1 ≤ row2 and col1 ≤ col2.<br><h3 id="2-思路分析："><a href="#2-思路分析：" class="headerlink" title="2. 思路分析："></a>2. 思路分析：</h3>&nbsp;&nbsp;这里需要说明的是，我们之前有个简单的一维的求区间[i,j]上的数字之和。这里需要推广到2D数组上。<br><br>&nbsp;&nbsp;我们可以分析如下图所示:<br><img src="https://graph.baidu.com/resource/1020ee4082f145fdc2c1f01550130458.jpg" alt="avatar"><br><img src="https://graph.baidu.com/resource/1021bbf87632814e7ccf801550130511.jpg" alt="avatar"><br><img src="https://graph.baidu.com/resource/102bc31feea95d593f2a301550130615.jpg" alt="avatar"><br><img src="https://graph.baidu.com/resource/102803608386adcfe72b201550130664.jpg" alt="avatar"></li>
+</ol>
+<p>&nbsp;&nbsp;以上述图片展示的区域ABCD为例，该区域的和应当有如下关系：Sum(AD) = Sum(OD)-Sum(OB)-Sum(OC)+Sum(OA);<br><br>&nbsp;&nbsp;从这里我们得到的启示是，我们可以类比一维的，用一个二维数组存现，起始点[0,0]到[i,j]的区域和，在用和与差的方式来求解区域和。由于矩阵不会变，因此，只需一次初始化即可，后面直接调用sumRegion方法即可。可以在O(1)的时间内完成。<br><br>&nbsp;&nbsp;这里我计算初始化矩阵的方法是利用之前的结果，只需遍历原矩阵一次。每次遍历一行的时候用sum计算该行从列序号0到当前列序号j的和的值，然后该元素[i,j]到[0,0]的区域和就等于matrixTemp[i-1,j]+sum。其中matrixTemp就是该初始化矩阵。<br><br>&nbsp;&nbsp;此外还应当注意：如果A点有横坐标或纵坐标为0的情况，此时应当进行分类讨论。<br><br><br>&nbsp;&nbsp;具体情况如以下AC代码所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumMatrix</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.matrix = matrix</span><br><span class="line">        self.matrixTemp = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(matrix[<span class="number">0</span>]) )] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix))]</span><br><span class="line">        <span class="comment"># sum = 0</span></span><br><span class="line">        <span class="comment"># 在建立初始化矩阵时利用sum中间变量，并且注意行号为0时的特殊情况处理</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix)):</span><br><span class="line">            sum = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</span><br><span class="line">                sum += matrix[i][j]</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> :</span><br><span class="line">                    self.matrixTemp[i][j] = sum</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.matrixTemp[i][j] = self.matrixTemp[i<span class="number">-1</span>][j] + sum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRegion</span><span class="params">(self, row1, col1, row2, col2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type row1: int</span></span><br><span class="line"><span class="string">        :type col1: int</span></span><br><span class="line"><span class="string">        :type row2: int</span></span><br><span class="line"><span class="string">        :type col2: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> row1 == <span class="number">0</span> <span class="keyword">and</span> col1 == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2]</span><br><span class="line">        <span class="keyword">if</span> row1 == <span class="number">0</span> <span class="keyword">and</span> col1 != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2] - self.matrixTemp[row2][col1<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> row1 !=<span class="number">0</span> <span class="keyword">and</span> col1 == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2] - self.matrixTemp[row1<span class="number">-1</span>][col2]</span><br><span class="line">        <span class="keyword">if</span> row1 !=<span class="number">0</span> <span class="keyword">and</span> col1 != <span class="number">0</span> :</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2] - self.matrixTemp[row1<span class="number">-1</span>][col2] - self.matrixTemp[row2][col1<span class="number">-1</span>] + self.matrixTemp[row1<span class="number">-1</span>][col1<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your NumMatrix object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = NumMatrix(matrix)</span></span><br><span class="line"><span class="comment"># param_1 = obj.sumRegion(row1,col1,row2,col2)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    array = [</span><br><span class="line">  [<span class="number">3</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">7</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">5</span>]</span><br><span class="line">]</span><br><span class="line">    solution = NumMatrix(array)</span><br><span class="line">    print(solution.matrixTemp)</span><br><span class="line">    print(solution.sumRegion(<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>))</span><br><span class="line">    print(solution.sumRegion(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">    print(solution.sumRegion(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/" data-id="ck0akgc82000fhd6s8ox60gx6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode动态规划篇/">leetcode动态规划篇</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/27/hello-world/" class="article-date">
+  <time datetime="2019-01-27T05:47:32.000Z" itemprop="datePublished">2019-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/27/hello-world/">欢迎来到魏世鑫的博客！</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://weishixin.github.io/2019/01/27/hello-world/" data-id="ck0adbd7t0000vz6stgogzlh0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode动态规划篇/">leetcode动态规划篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode贪心法/">leetcode贪心法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秋招面试/">秋招面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高级算法课/">高级算法课</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/leetcode动态规划篇/" style="font-size: 20px;">leetcode动态规划篇</a> <a href="/tags/leetcode贪心法/" style="font-size: 10px;">leetcode贪心法</a> <a href="/tags/秋招面试/" style="font-size: 10px;">秋招面试</a> <a href="/tags/高级算法课/" style="font-size: 10px;">高级算法课</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/18/面试复习技术总体思路/">面试复习技术总体思路</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/18/leetcode-740-删除与获得点数/">leetcode 740-删除与获得点数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/18/leetcode-718-最长重复子数组/">leetcode 718-最长重复子数组</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/leetcode-486-预测赢家/">leetcode 486-预测赢家</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/leetcode-402-移掉k位数字/">leetcode 402-移掉k位数字</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WeiShixin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
