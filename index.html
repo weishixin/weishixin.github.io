@@ -233,6 +233,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/09/09/leetcode494-目标和题解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏小威">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar_zoro2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魏小威的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/09/leetcode494-目标和题解/" itemprop="url">leetcode494 目标和题解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-09T23:21:04+08:00">
+                2019-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/09/leetcode494-目标和题解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/09/leetcode494-目标和题解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。<br>&nbsp;&nbsp;&nbsp;&nbsp;返回可以使最终数组和为目标数 S 的所有添加符号的方法数。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/target-sum" target="_blank" rel="noopener">https://leetcode-cn.com/problems/target-sum</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">输入: nums: [1, 1, 1, 1, 1], S: 3</span><br><span class="line">输出: 5</span><br><span class="line">解释: </span><br><span class="line"></span><br><span class="line">-1+1+1+1+1 = 3</span><br><span class="line">+1-1+1+1+1 = 3</span><br><span class="line">+1+1-1+1+1 = 3</span><br><span class="line">+1+1+1-1+1 = 3</span><br><span class="line">+1+1+1+1-1 = 3</span><br><span class="line"></span><br><span class="line">一共有5种方法让最终目标和为3。</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">数组的长度不会超过20，并且数组中的值全为正数。</span><br><span class="line">初始的数组的和不会超过1000。</span><br><span class="line">保证返回的最终结果为32位整数。</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;本来打算直接根据题意硬撸代码，本来打算利用如下公式：$$dp[i][j] = dp[i-1][j-nums[i]] + dp[i-1][j+nums[i]]   $$&nbsp;&nbsp;&nbsp;&nbsp;上式中dp[i][j]表示在0-i的范围内，和为j的种类个数。后来发现这样写，需要判断j+nums[i]和j-nums[i]与0的关系，判断比较麻烦。<br>&nbsp;&nbsp;&nbsp;&nbsp;后来在网上找了一些好的<a href="https://leetcode-cn.com/problems/target-sum/solution/0-1bei-bao-dong-tai-gui-hua-jie-da-bai-90de-ti-jia/" target="_blank" rel="noopener">解题报告</a>。<br>&nbsp;&nbsp;&nbsp;&nbsp;我们可以先做如下式子化简来简化问题为0-1背包问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;设置我们取正号的整数部分为集合P，添加负号部分的整数为集合N，Sum(P)表示集合P中所有正数的和，同理Sum(N)为取负号部分的整数之和，Sum(nums)表示nums序列中的所有非负整数之和。则由如下推导：<br>$$Sum(P)-Sum(N) = S$$$$Sum(P)+Sum(N)=Sum(nums)$$$$2 \times Sum(P) = Sum(nums) + S$$$$Sum(P) = (Sum(nums)+S) / 2$$<br>&nbsp;&nbsp;&nbsp;&nbsp;由于nums序列里面都是非负整数，因此如果Sum(nums) + S是奇数那么一定是不存在P使得题意成立的。这里其实就把问题转化为： 在原序列中找到一个子集使得Sum(P) = (Sum(nums)+S) / 2成立，等号右边其实是一个常量。因此就转化为0-1背包的变形问题了，给定一个序列，找出使得和为固定值的子集的个数。每一个整数都只有选和不选两种策略。<br>&amp;nb&nbsp;&nbsp;&nbsp;&nbsp;sp;&nbsp;&nbsp;&nbsp;记target = (Sum(nums)+S)/2, 易得dp方程如下:<br>$$dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i]] , j&gt;nums[i]$$$$dp[i][j]=dp[i-1][j]     ,j&lt;nums[i]$$<br>使用上述二维DP需要注意nums[0]为0的特殊情况，即在给dp[0][0]赋值时，dp[0][0]其实表示的是：（特殊用例：[0,0,0,0,0,0,1],0）<br>（1）选了第一个元素nums[0]和为0；（注意此时nums[0]=0）<br>（2）不选nums[0]和为0；<br>这两种情况。真的很难考虑这么全面，完全是面向测试用例编程，不过这个用例， 就不给AC啊😢~</p>
+<h1 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h1><h2 id="Java代码实现1-二维dp数组-："><a href="#Java代码实现1-二维dp数组-：" class="headerlink" title="Java代码实现1(二维dp数组)："></a>Java代码实现1(二维dp数组)：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tempSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            tempSum += num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(tempSum &lt; S || (tempSum + S) % <span class="number">2</span> == <span class="number">1</span>) &#123; <span class="comment">//不存在情况</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> target = (S + tempSum) / <span class="number">2</span>; </span><br><span class="line">        <span class="comment">// 经过化简 我们发现nums数组中存在一组序列P,逗让他取正号,使得Sum(P) = target，即是满足条件</span></span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length][target + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(nums[<span class="number">0</span>] &lt;= target) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][nums[<span class="number">0</span>]] = <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">if</span>(nums[<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; target+<span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= nums[i]) &#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i-<span class="number">1</span>][j-nums[i]];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[nums.length-<span class="number">1</span>][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-再看一维dp实现"><a href="#4-再看一维dp实现" class="headerlink" title="4. 再看一维dp实现"></a>4. 再看一维dp实现</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;我们知道上面的0-1背包型问题可以使用一维dp数组来实现，而且本题使用一维dp数组，其实更加方便。为什么这么说？且看下面的例子。<br>&nbsp;&nbsp;&nbsp;&nbsp;在nums[0] = 0 的情况，我们知道这是使用二维数组dp的一个特殊情况，很容易忽略。但是在一维dp下，我们只要关注循环变量num，赋初始值的时候，只要给dp[0]赋1，后面无论num[0]是不是0，都可以直接在dp状态方程中完成判断。<br>$$dp[i] = dp[i] + dp[i-num[i]]$$</p>
+<p>Java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tempSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            tempSum += num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(tempSum &lt; S || (tempSum+S) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> target = (tempSum + S) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[target+<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// 只需关注</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = target; i &gt;= num; i--) &#123;</span><br><span class="line">                dp[i] = dp[i] + dp[i-num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://leetcode-cn.com/problems/target-sum/solution/0-1bei-bao-dong-tai-gui-hua-jie-da-bai-90de-ti-jia/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/target-sum/solution/0-1bei-bao-dong-tai-gui-hua-jie-da-bai-90de-ti-jia/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/06/18/面试复习技术总体思路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1958,199 +2152,6 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/02/14/leetcode_304求二维矩阵区域和/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魏小威">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar_zoro2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魏小威的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/14/leetcode_304求二维矩阵区域和/" itemprop="url">leetcode 304. Range Sum Query 2D - Immutable 解题报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T16:28:35+08:00">
-                2019-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/14/leetcode_304求二维矩阵区域和/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/14/leetcode_304求二维矩阵区域和/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  728 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="leetcode-304-Range-Sum-Query-2D-Immutable-解题报告"><a href="#leetcode-304-Range-Sum-Query-2D-Immutable-解题报告" class="headerlink" title="leetcode 304. Range Sum Query 2D - Immutable 解题报告"></a>leetcode 304. Range Sum Query 2D - Immutable 解题报告</h2><h3 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1. 题目描述："></a>1. 题目描述：</h3><p>&nbsp;&nbsp;  Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</p>
-<h4 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Given matrix = [</span><br><span class="line">  [3, 0, 1, 4, 2],</span><br><span class="line">  [5, 6, 3, 2, 1],</span><br><span class="line">  [1, 2, 0, 1, 5],</span><br><span class="line">  [4, 1, 0, 1, 7],</span><br><span class="line">  [1, 0, 3, 0, 5]</span><br><span class="line">]</span><br><span class="line">sumRegion(2, 1, 4, 3) -&gt; 8</span><br><span class="line">sumRegion(1, 1, 2, 2) -&gt; 11</span><br><span class="line">sumRegion(1, 2, 2, 4) -&gt; 12</span><br></pre></td></tr></table></figure>
-
-<h4 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h4><ol>
-<li>You may assume that the matrix does not change.</li>
-<li>There are many calls to sumRegion function.</li>
-<li>You may assume that row1 ≤ row2 and col1 ≤ col2.<br><h3 id="2-思路分析："><a href="#2-思路分析：" class="headerlink" title="2. 思路分析："></a>2. 思路分析：</h3>&nbsp;&nbsp;这里需要说明的是，我们之前有个简单的一维的求区间[i,j]上的数字之和。这里需要推广到2D数组上。<br><br>&nbsp;&nbsp;我们可以分析如下图所示:<br><img src="/2019/02/14/leetcode_304求二维矩阵区域和/rectangle1.jpg" alt="avatar"><br><img src="/2019/02/14/leetcode_304求二维矩阵区域和/sum(OA).png" alt="avatar"><br><img src="/2019/02/14/leetcode_304求二维矩阵区域和/sum(OA).png" alt="avatar"><br><img src="/2019/02/14/leetcode_304求二维矩阵区域和/sum(OA).png" alt="avatar"></li>
-</ol>
-<p>&nbsp;&nbsp;以上述图片展示的区域ABCD为例，该区域的和应当有如下关系：Sum(AD) = Sum(OD)-Sum(OB)-Sum(OC)+Sum(OA);<br><br>&nbsp;&nbsp;从这里我们得到的启示是，我们可以类比一维的，用一个二维数组存现，起始点[0,0]到[i,j]的区域和，在用和与差的方式来求解区域和。由于矩阵不会变，因此，只需一次初始化即可，后面直接调用sumRegion方法即可。可以在O(1)的时间内完成。<br><br>&nbsp;&nbsp;这里我计算初始化矩阵的方法是利用之前的结果，只需遍历原矩阵一次。每次遍历一行的时候用sum计算该行从列序号0到当前列序号j的和的值，然后该元素[i,j]到[0,0]的区域和就等于matrixTemp[i-1,j]+sum。其中matrixTemp就是该初始化矩阵。<br><br>&nbsp;&nbsp;此外还应当注意：如果A点有横坐标或纵坐标为0的情况，此时应当进行分类讨论。<br><br><br>&nbsp;&nbsp;具体情况如以下AC代码所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumMatrix</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.matrix = matrix</span><br><span class="line">        self.matrixTemp = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(matrix[<span class="number">0</span>]) )] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix))]</span><br><span class="line">        <span class="comment"># sum = 0</span></span><br><span class="line">        <span class="comment"># 在建立初始化矩阵时利用sum中间变量，并且注意行号为0时的特殊情况处理</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix)):</span><br><span class="line">            sum = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</span><br><span class="line">                sum += matrix[i][j]</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> :</span><br><span class="line">                    self.matrixTemp[i][j] = sum</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.matrixTemp[i][j] = self.matrixTemp[i<span class="number">-1</span>][j] + sum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRegion</span><span class="params">(self, row1, col1, row2, col2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type row1: int</span></span><br><span class="line"><span class="string">        :type col1: int</span></span><br><span class="line"><span class="string">        :type row2: int</span></span><br><span class="line"><span class="string">        :type col2: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> row1 == <span class="number">0</span> <span class="keyword">and</span> col1 == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2]</span><br><span class="line">        <span class="keyword">if</span> row1 == <span class="number">0</span> <span class="keyword">and</span> col1 != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2] - self.matrixTemp[row2][col1<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> row1 !=<span class="number">0</span> <span class="keyword">and</span> col1 == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2] - self.matrixTemp[row1<span class="number">-1</span>][col2]</span><br><span class="line">        <span class="keyword">if</span> row1 !=<span class="number">0</span> <span class="keyword">and</span> col1 != <span class="number">0</span> :</span><br><span class="line">            <span class="keyword">return</span> self.matrixTemp[row2][col2] - self.matrixTemp[row1<span class="number">-1</span>][col2] - self.matrixTemp[row2][col1<span class="number">-1</span>] + self.matrixTemp[row1<span class="number">-1</span>][col1<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your NumMatrix object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = NumMatrix(matrix)</span></span><br><span class="line"><span class="comment"># param_1 = obj.sumRegion(row1,col1,row2,col2)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    array = [</span><br><span class="line">  [<span class="number">3</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">7</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">5</span>]</span><br><span class="line">]</span><br><span class="line">    solution = NumMatrix(array)</span><br><span class="line">    print(solution.matrixTemp)</span><br><span class="line">    print(solution.sumRegion(<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>))</span><br><span class="line">    print(solution.sumRegion(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">    print(solution.sumRegion(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2203,7 +2204,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2225,7 +2226,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
