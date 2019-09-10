@@ -233,6 +233,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/09/10/Java常用知识点（个人向积累）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏小威">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar_zoro2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魏小威的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/10/Java常用知识点（个人向积累）/" itemprop="url">Java常用知识点（个人向积累）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-10T15:15:27+08:00">
+                2019-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/10/Java常用知识点（个人向积累）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/10/Java常用知识点（个人向积累）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  199 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><h2 id="1-十进制转其它进制"><a href="#1-十进制转其它进制" class="headerlink" title="1. 十进制转其它进制"></a>1. 十进制转其它进制</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toBinaryString(365) // 十进制转二进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toHexString(127) // 十进制转十六进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toOctalString(365) // 十进制转八进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toString(10,16)<br>&nbsp;&nbsp;&nbsp;&nbsp;// 十进制转换成对应进制数， 不适合用于负数，第一个参数为转换数，第二个参数为转换进制</p>
+<h2 id="2-其它进制数转十进制"><a href="#2-其它进制数转十进制" class="headerlink" title="2. 其它进制数转十进制"></a>2. 其它进制数转十进制</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;// N进制转换成十进制，返回类型为int,第一个参数为字符串，第二个参数为进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,8)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,16)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,8)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,16)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/09/09/leetcode494-目标和题解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1954,204 +2139,6 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魏小威">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar_zoro2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魏小威的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/" itemprop="url">leetcode309_最佳买卖股票时机含冷冻期</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T11:40:23+08:00">
-                2019-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  901 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1.题目描述："></a>1.题目描述：</h2><p>Say you have an array for which the i<sup>th</sup> element is the price of a given stock on day i.<br><br>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:<br><br>·  You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).<br><br>·  After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)<br></p>
-<h3 id="Example："><a href="#Example：" class="headerlink" title="Example："></a>Example：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,0,2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: transactions = [buy, sell, cooldown, buy, sell]</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-思路分析："><a href="#2-思路分析：" class="headerlink" title="2.思路分析："></a>2.思路分析：</h2><h3 id="动态规划："><a href="#动态规划：" class="headerlink" title="动态规划："></a>动态规划：</h3><p>&nbsp;&nbsp;利用<strong>三个dp数组</strong>来表示在位置i上的执行（<strong>buy</strong>,<strong>sell</strong>和<strong>cooldown</strong>）之一所能获得的最大利润。<br><br>&nbsp;&nbsp;对每个dp数组如下维护：<br></p>
-<ol>
-<li>dp_cooldown数组，在位置i上执行冷冻操作，则说明i-1位置上执行的必然是sell操作</li>
-<li>dp_sell数组，在位置i上执行sell操作，要想获得最大利润，有如下情况：<br><br> 1) <strong>i-1</strong>位置之前已经拥有股票了，此时在<strong>i-1</strong>位置也可以卖，为了比较出最大的利润，必须也要在<strong>i-1</strong>卖一下<br> 2) <strong>i-1</strong>位置才买了股票，此时正好在<strong>i</strong>位置上卖出，此时的利润需要计算一下</li>
-<li>dp_buy数组，在位置i上执行buy操作，要想获得最大利润，有如下情况：<br> 1) <em>i-2</em>位置之前已经卖掉了股票，并且已经过了冷冻期，换言之就是<em>i-1</em>位置之前不持有股票，此时在<em>i-1</em>位置上也可以买进股票<br> 2) <em>i-2</em>位置持有股票并正好卖出股票，则正好<em>i-1</em>位置是冷冻期，在<em>i</em>位置上买进股票<br><br></li>
-<li>最后求三个dp数组的最后元素的最大值，当然我易得肯定不会再最后一天买进股票的，so最后的maxprofit = max(dp_cooldown[len(prices)-1] , dp_sell[len(prices)-1])<br>
-
-
-</li>
-</ol>
-<p>&nbsp;&nbsp;AC代码如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type prices: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">            思路：</span></span><br><span class="line"><span class="string">            动态规划：</span></span><br><span class="line"><span class="string">            利用三个dp数组来表示在位置i上的执行（buy,sell和cooldown）之一所能获得的最大利润</span></span><br><span class="line"><span class="string">            对每个dp数组如下维护：</span></span><br><span class="line"><span class="string">            1. dp_cooldown数组，在位置i上执行冷冻操作，则说明i-1位置上执行的必然是sell操作</span></span><br><span class="line"><span class="string">            2. dp_sell数组，在位置i上执行sell操作，要想获得最大利润，有如下情况：</span></span><br><span class="line"><span class="string">                1)  i-1位置之前已经拥有股票了，此时在i-1位置也可以卖，为了比较出最大的利润，必须也要在i-1卖一下</span></span><br><span class="line"><span class="string">                2)  i-1位置才买了股票，此时正好在i位置上卖出，此时的利润需要计算一下</span></span><br><span class="line"><span class="string">            3. dp_buy数组，在位置i上执行buy操作，要想获得最大利润，有如下情况：</span></span><br><span class="line"><span class="string">                1)  i-2位置之前已经卖掉了股票，并且已经过了冷冻期，换言之就是i-1位置之前不持有股票，此时在i-1位置上也可以买进股票</span></span><br><span class="line"><span class="string">                2)  i-2位置持有股票并正好卖出股票，则正好i-1位置是冷冻期，在i位置上买进股票</span></span><br><span class="line"><span class="string">            最后求三个dp数组的最后元素的最大值，当然我易得肯定不会再最后一天买进股票的，</span></span><br><span class="line"><span class="string">            so最后的maxprofit = max(dp_cooldown[len(prices)-1] , dp_sell[len(prices)-1])</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> prices:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        lenOfPrices = len(prices)</span><br><span class="line">        dp_buy , dp_sell , dp_cooldown = [<span class="number">0</span>] * lenOfPrices, [<span class="number">0</span>]*lenOfPrices , [<span class="number">0</span>]*lenOfPrices</span><br><span class="line">        dp_buy[<span class="number">0</span>] = -prices[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, lenOfPrices):</span><br><span class="line">            dp_cooldown[i] = dp_sell[i<span class="number">-1</span>]</span><br><span class="line">            dp_sell[i] = max(dp_buy[i<span class="number">-1</span>]+prices[i] , dp_sell[i<span class="number">-1</span>] )</span><br><span class="line">            dp_buy[i] = max( dp_cooldown[i<span class="number">-1</span>]-prices[i] , dp_buy[i<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">return</span> max(dp_cooldown[lenOfPrices<span class="number">-1</span>] , dp_sell[lenOfPrices<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">prices = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">2</span>]</span><br><span class="line">print(solution.maxProfit(prices))</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2204,7 +2191,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2215,7 +2202,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2226,7 +2213,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
