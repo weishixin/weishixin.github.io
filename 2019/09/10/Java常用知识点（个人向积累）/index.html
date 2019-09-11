@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="魏小威的个人博客">
 <meta property="og:description" content="进制转换1. 十进制转其它进制&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer.toBinaryString(365) // 十进制转二进制&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer.toHexString(127) // 十进制转十六进制&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer.toOctalString(365) // 十进制转八进制&amp;n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-10T07:25:19.676Z">
+<meta property="og:updated_time" content="2019-09-11T03:39:07.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java常用知识点（个人向积累）">
 <meta name="twitter:description" content="进制转换1. 十进制转其它进制&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer.toBinaryString(365) // 十进制转二进制&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer.toHexString(127) // 十进制转十六进制&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer.toOctalString(365) // 十进制转八进制&amp;n">
@@ -331,7 +331,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  199 字
+                  1.2k 字
                 </span>
               
 
@@ -347,7 +347,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  5 分钟
                 </span>
               
             </div>
@@ -371,6 +371,13 @@
         <h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><h2 id="1-十进制转其它进制"><a href="#1-十进制转其它进制" class="headerlink" title="1. 十进制转其它进制"></a>1. 十进制转其它进制</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toBinaryString(365) // 十进制转二进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toHexString(127) // 十进制转十六进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toOctalString(365) // 十进制转八进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toString(10,16)<br>&nbsp;&nbsp;&nbsp;&nbsp;// 十进制转换成对应进制数， 不适合用于负数，第一个参数为转换数，第二个参数为转换进制</p>
 <h2 id="2-其它进制数转十进制"><a href="#2-其它进制数转十进制" class="headerlink" title="2. 其它进制数转十进制"></a>2. 其它进制数转十进制</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;// N进制转换成十进制，返回类型为int,第一个参数为字符串，第二个参数为进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,8)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,16)</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,8)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,16)</p>
+<h1 id="SSL-和-SSH-的区别"><a href="#SSL-和-SSH-的区别" class="headerlink" title="SSL 和 SSH 的区别"></a>SSL 和 SSH 的区别</h1><h2 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;SSL是国际认证的加密和身份认证的通信协议，</p>
+<p>官网原文如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> SSH (Secure Shell) and SSL (Secure Sockets Layer) can both be used to secure communications across the Internet. This page tries to explain the differences between the two in easily understood terms.</span><br><span class="line"></span><br><span class="line">SSL was designed to secure web sessions; it can do more, but that&apos;s the original intent.</span><br><span class="line"></span><br><span class="line">SSH was designed to replace telnet and FTP; it can do more, but that&apos;s the original intent.</span><br><span class="line"></span><br><span class="line">SSL is a drop-in with a number of uses. It front-ends HTTP to give you HTTPS. It can also do this for POP3, SMTP, IMAP, and just about any other well-behaved TCP application. It&apos;s real easy for most programmers who are creating network applications from scratch to just grab an SSL implementation and bundle it with their app to provide encryption when communicating across the network via TCP. Check out: stunnel.org.</span><br><span class="line"></span><br><span class="line">SSH is a swiss-army-knife designed to do a lot of different things, most of which revolve around setting up a secure tunnel between hosts. Some implementations of SSH rely on SSL libraries - this is because SSH and SSL use many of the same encryption algorithms (i.e. TripleDES).</span><br><span class="line"></span><br><span class="line">SSH is not based on SSL in the sense that HTTPS is based on SSL. SSH does much more than SSL, and they don&apos;t talk to each other - the two are different protocols, but have some overlap in how they accomplish similiar goals.</span><br><span class="line"></span><br><span class="line">SSL by itself gives you nothing - just a handshake and encryption. You need an application to drive SSL to get real work done.</span><br><span class="line"></span><br><span class="line">SSH by itself does a whole lot of useful stuff that allows users to perform real work. Two aspects of SSH are the console login (telnet replacement) and secure file transfers (ftp replacement), but you also get an ability to tunnel (secure) additional applications, enabling a user to run HTTP, FTP, POP3, and just about anything else THROUGH an SSH tunnel.</span><br><span class="line"></span><br><span class="line">Without interesting traffic from an application, SSL does nothing. Without interesting traffic from an application, SSH brings up an encrypted tunnel between two hosts which allows you to get real work done through an interactive login shell, file transfers, etc.</span><br><span class="line"></span><br><span class="line">Last comment: HTTPS does not extend SSL, it uses SSL to do HTTP securely. SSH does much more than SSL, and you can tunnel HTTPS through it! Just because both SSL and SSH can do TripleDES doesn&apos;t mean one is based on the other.</span><br></pre></td></tr></table></figure>
+
+<p>译文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">SSH（安全外壳）和SSL（安全套接字层）都可用于保护Internet上的通信。本页试图用易于理解的术语解释两者之间的差异。</span><br><span class="line"></span><br><span class="line">SSL旨在保护Web会话;它可以做得更多，但这是最初的意图。</span><br><span class="line"></span><br><span class="line">SSH旨在取代telnet和FTP;它可以做得更多，但这是最初的意图。</span><br><span class="line"></span><br><span class="line">SSL是一种具有多种用途的插件。它前端HTTP为您提供HTTPS。它也可以用于POP3，SMTP，IMAP以及任何其他性能良好的TCP应用程序。对于从头开始创建网络应用程序的大多数程序员而言，只需抓住SSL实现并将其与应用程序捆绑在一起，以便在通过TCP通过网络进行通信时提供加密，这真的很容易。退房：stunnel.org。</span><br><span class="line"></span><br><span class="line">SSH是一种瑞士军刀，设计用于执行许多不同的操作，其中大多数都围绕在主机之间建立安全隧道。 SSH的一些实现依赖于SSL库 - 这是因为SSH和SSL使用许多相同的加密算法（即TripleDES）。</span><br><span class="line"></span><br><span class="line">在HTTPS基于SSL的意义上，SSH不基于SSL。 SSH比SSL做得更多，并且它们不相互通信 - 两者是不同的协议，但在完成类似目标方面有一些重叠。</span><br><span class="line"></span><br><span class="line">SSL本身不会给你什么 - 只是握手和加密。您需要一个应用程序来驱动SSL以完成实际工作。</span><br><span class="line"></span><br><span class="line">SSH本身可以提供许多有用的东西，允许用户执行实际工作。 SSH的两个方面是控制台登录（telnet替换）和安全文件传输（ftp替换），但你也能够隧道（安全）其他应用程序，使用户能够运行HTTP，FTP，POP3，几乎任何东西否则通过SSH隧道。</span><br><span class="line"></span><br><span class="line">没有来自应用程序的有趣流量，SSL什么都不做。如果没有来自应用程序的有趣流量，SSH会在两台主机之间建立一个加密隧道，允许您通过交互式登录shell，文件传输等完成实际工作。</span><br><span class="line"></span><br><span class="line">最后评论：HTTPS不扩展SSL，它使用SSL安全地执行HTTP。 SSH比SSL做得更多，你可以通过它隧道连接！仅仅因为SSL和SSH都可以执行TripleDES并不意味着一个基于另一个。</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -410,6 +417,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/11/小米2019软件开发笔试-模拟2048/" rel="prev" title="小米2019软件开发笔试-模拟2048">
+                小米2019软件开发笔试-模拟2048 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -491,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -502,7 +513,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -513,7 +524,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -546,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进制转换"><span class="nav-number">1.</span> <span class="nav-text">进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-十进制转其它进制"><span class="nav-number">1.1.</span> <span class="nav-text">1. 十进制转其它进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-其它进制数转十进制"><span class="nav-number">1.2.</span> <span class="nav-text">2. 其它进制数转十进制</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进制转换"><span class="nav-number">1.</span> <span class="nav-text">进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-十进制转其它进制"><span class="nav-number">1.1.</span> <span class="nav-text">1. 十进制转其它进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-其它进制数转十进制"><span class="nav-number">1.2.</span> <span class="nav-text">2. 其它进制数转十进制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL-和-SSH-的区别"><span class="nav-number">2.</span> <span class="nav-text">SSL 和 SSH 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL"><span class="nav-number">2.1.</span> <span class="nav-text">SSL</span></a></li></ol></li></ol></div>
             
 
           </div>

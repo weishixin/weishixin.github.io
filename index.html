@@ -233,6 +233,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/09/11/小米2019软件开发笔试-模拟2048/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏小威">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar_zoro2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魏小威的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/11/小米2019软件开发笔试-模拟2048/" itemprop="url">小米2019软件开发笔试-模拟2048</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-11T21:20:11+08:00">
+                2019-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔试/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/11/小米2019软件开发笔试-模拟2048/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/11/小米2019软件开发笔试-模拟2048/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  752 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;额，具体描述忘了，不过相信大家都有自己玩过2048，题意大概是这样：请你模拟2048游戏，实现从当前界面往左滑动的情况，并打印出来。<br>&nbsp;&nbsp;&nbsp;&nbsp;给出用例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">4 // 表示下面有4行</span><br><span class="line">0 0 2 2</span><br><span class="line">0 4 2 2 </span><br><span class="line">2 2 4 4</span><br><span class="line">4 4 4 8</span><br><span class="line"></span><br><span class="line">输出如下：</span><br><span class="line">4 0 0 0</span><br><span class="line">8 0 0 0</span><br><span class="line">8 4 0 0</span><br><span class="line">8 4 8 0</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;其实这里题意有表述不清的地方，因为不知道是不是输入n表示矩阵的阶数，这里我的解法姑且这么认为。不是的话其实也不难做处理。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;一开始打算直接从左往右做的，这样做了一下，确实不可行，可惜我在做题的时候，由于时间限制，想着先实现一个版本再说，先跑几个用例，拿点分。没有在一开始就想到用栈来做，其实这道题用栈来做会方便很多。哎，我还是太菜了鸭～<br>&nbsp;&nbsp;&nbsp;&nbsp;实现思路：<br>核心思路如下面的伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">申请两个stack: stack1, stack2</span><br><span class="line">遍历每一行的各元素 x :</span><br><span class="line">    if x == 0 :</span><br><span class="line">        continue;</span><br><span class="line">    else :</span><br><span class="line">        if stack1 不为空 ：</span><br><span class="line">            int temp = x;</span><br><span class="line">            while( stack1 不为空 &amp;&amp; stack1.peek() ==  temp):</span><br><span class="line">                temp = stack1.pop();</span><br><span class="line">                temp = temp &lt;&lt; 1;</span><br><span class="line">            stack1.push(temp)</span><br><span class="line">        else :</span><br><span class="line">            stack1.push(x)</span><br><span class="line">// 利用stack2 实现 stack1的元素逆序</span><br><span class="line">然后想办法把stack2 的元素拼接起来，不够的用0 来补充</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.text.*;</span><br><span class="line"><span class="keyword">import</span> java.math.*;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2048</span> </span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    请完成下面这个函数，实现题目要求的功能</span></span><br><span class="line"><span class="comment">    当然，你也可以不按照下面这个模板来作答，完全按照自己的想法来 ^-^</span></span><br><span class="line"><span class="comment">    ******************************开始写代码******************************/</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">solution</span><span class="params">(String[] input)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = input.length;</span><br><span class="line">        String[] ans = <span class="keyword">new</span> String[n];</span><br><span class="line"></span><br><span class="line">        Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            String ansLine = <span class="string">""</span>;</span><br><span class="line">            List&lt;String&gt; resLine = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            String[] strArray = input[i].split(<span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">int</span> m = strArray.length;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j ++ )&#123;</span><br><span class="line">                <span class="keyword">int</span> cur = Integer.parseInt(strArray[j]);</span><br><span class="line">                <span class="keyword">if</span> (cur == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span>(!stack1.isEmpty()) &#123;</span><br><span class="line">                        <span class="keyword">int</span> tempNew = cur; <span class="comment">// 用了表示下面经过层层迭代，最后放到stack1中的值</span></span><br><span class="line">                        <span class="keyword">while</span> (!stack1.isEmpty() &amp;&amp; stack1.peek() == tempNew) &#123;</span><br><span class="line">                            <span class="keyword">int</span> curStackTop = stack1.pop();</span><br><span class="line">                            tempNew = curStackTop &lt;&lt; <span class="number">1</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        stack1.push(tempNew);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        stack1.push(cur);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (!stack1.isEmpty()) &#123;</span><br><span class="line">                stack2.push(stack1.pop());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (!stack2.isEmpty()) &#123;</span><br><span class="line">                resLine.add(String.valueOf(stack2.pop()));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 拼凑stack2</span></span><br><span class="line">            <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(String s : resLine) &#123;</span><br><span class="line">                ansLine += (s);</span><br><span class="line">                <span class="keyword">if</span>(k &lt; m-<span class="number">1</span>) &#123;</span><br><span class="line">                    ansLine += <span class="string">" "</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                k ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (k &lt; m) &#123;</span><br><span class="line">                ansLine += <span class="string">"0"</span>;</span><br><span class="line">                <span class="keyword">if</span>(k &lt; m-<span class="number">1</span>) &#123;</span><br><span class="line">                    ansLine += <span class="string">" "</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                k ++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans[i] = ansLine;</span><br><span class="line">            <span class="comment">// clear</span></span><br><span class="line">            stack1.clear();</span><br><span class="line">            stack2.clear();</span><br><span class="line">        &#125;</span><br><span class="line">        String ss = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++) &#123;</span><br><span class="line">            ss += ans[i] + <span class="string">"\n"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ss;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/******************************结束写代码******************************/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String res;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> _input_size = <span class="number">0</span>;</span><br><span class="line">        _input_size = Integer.parseInt(in.nextLine().trim());</span><br><span class="line">        String[] _input = <span class="keyword">new</span> String[_input_size];</span><br><span class="line">        String _input_item;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> _input_i = <span class="number">0</span>; _input_i &lt; _input_size; _input_i++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                _input_item = in.nextLine();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                _input_item = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            _input[_input_i] = _input_item;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        res = solution(_input);</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/09/10/Java常用知识点（个人向积累）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -328,7 +519,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  199 字
+                  1.2k 字
                 </span>
               
 
@@ -344,7 +535,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  5 分钟
                 </span>
               
             </div>
@@ -370,6 +561,13 @@
             <h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><h2 id="1-十进制转其它进制"><a href="#1-十进制转其它进制" class="headerlink" title="1. 十进制转其它进制"></a>1. 十进制转其它进制</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toBinaryString(365) // 十进制转二进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toHexString(127) // 十进制转十六进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toOctalString(365) // 十进制转八进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.toString(10,16)<br>&nbsp;&nbsp;&nbsp;&nbsp;// 十进制转换成对应进制数， 不适合用于负数，第一个参数为转换数，第二个参数为转换进制</p>
 <h2 id="2-其它进制数转十进制"><a href="#2-其它进制数转十进制" class="headerlink" title="2. 其它进制数转十进制"></a>2. 其它进制数转十进制</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;// N进制转换成十进制，返回类型为int,第一个参数为字符串，第二个参数为进制<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,8)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.parseInt(“1010”,16)</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,8)<br>&nbsp;&nbsp;&nbsp;&nbsp;Integer.valueOf(“1010”,16)</p>
+<h1 id="SSL-和-SSH-的区别"><a href="#SSL-和-SSH-的区别" class="headerlink" title="SSL 和 SSH 的区别"></a>SSL 和 SSH 的区别</h1><h2 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;SSL是国际认证的加密和身份认证的通信协议，</p>
+<p>官网原文如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> SSH (Secure Shell) and SSL (Secure Sockets Layer) can both be used to secure communications across the Internet. This page tries to explain the differences between the two in easily understood terms.</span><br><span class="line"></span><br><span class="line">SSL was designed to secure web sessions; it can do more, but that&apos;s the original intent.</span><br><span class="line"></span><br><span class="line">SSH was designed to replace telnet and FTP; it can do more, but that&apos;s the original intent.</span><br><span class="line"></span><br><span class="line">SSL is a drop-in with a number of uses. It front-ends HTTP to give you HTTPS. It can also do this for POP3, SMTP, IMAP, and just about any other well-behaved TCP application. It&apos;s real easy for most programmers who are creating network applications from scratch to just grab an SSL implementation and bundle it with their app to provide encryption when communicating across the network via TCP. Check out: stunnel.org.</span><br><span class="line"></span><br><span class="line">SSH is a swiss-army-knife designed to do a lot of different things, most of which revolve around setting up a secure tunnel between hosts. Some implementations of SSH rely on SSL libraries - this is because SSH and SSL use many of the same encryption algorithms (i.e. TripleDES).</span><br><span class="line"></span><br><span class="line">SSH is not based on SSL in the sense that HTTPS is based on SSL. SSH does much more than SSL, and they don&apos;t talk to each other - the two are different protocols, but have some overlap in how they accomplish similiar goals.</span><br><span class="line"></span><br><span class="line">SSL by itself gives you nothing - just a handshake and encryption. You need an application to drive SSL to get real work done.</span><br><span class="line"></span><br><span class="line">SSH by itself does a whole lot of useful stuff that allows users to perform real work. Two aspects of SSH are the console login (telnet replacement) and secure file transfers (ftp replacement), but you also get an ability to tunnel (secure) additional applications, enabling a user to run HTTP, FTP, POP3, and just about anything else THROUGH an SSH tunnel.</span><br><span class="line"></span><br><span class="line">Without interesting traffic from an application, SSL does nothing. Without interesting traffic from an application, SSH brings up an encrypted tunnel between two hosts which allows you to get real work done through an interactive login shell, file transfers, etc.</span><br><span class="line"></span><br><span class="line">Last comment: HTTPS does not extend SSL, it uses SSL to do HTTP securely. SSH does much more than SSL, and you can tunnel HTTPS through it! Just because both SSL and SSH can do TripleDES doesn&apos;t mean one is based on the other.</span><br></pre></td></tr></table></figure>
+
+<p>译文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">SSH（安全外壳）和SSL（安全套接字层）都可用于保护Internet上的通信。本页试图用易于理解的术语解释两者之间的差异。</span><br><span class="line"></span><br><span class="line">SSL旨在保护Web会话;它可以做得更多，但这是最初的意图。</span><br><span class="line"></span><br><span class="line">SSH旨在取代telnet和FTP;它可以做得更多，但这是最初的意图。</span><br><span class="line"></span><br><span class="line">SSL是一种具有多种用途的插件。它前端HTTP为您提供HTTPS。它也可以用于POP3，SMTP，IMAP以及任何其他性能良好的TCP应用程序。对于从头开始创建网络应用程序的大多数程序员而言，只需抓住SSL实现并将其与应用程序捆绑在一起，以便在通过TCP通过网络进行通信时提供加密，这真的很容易。退房：stunnel.org。</span><br><span class="line"></span><br><span class="line">SSH是一种瑞士军刀，设计用于执行许多不同的操作，其中大多数都围绕在主机之间建立安全隧道。 SSH的一些实现依赖于SSL库 - 这是因为SSH和SSL使用许多相同的加密算法（即TripleDES）。</span><br><span class="line"></span><br><span class="line">在HTTPS基于SSL的意义上，SSH不基于SSL。 SSH比SSL做得更多，并且它们不相互通信 - 两者是不同的协议，但在完成类似目标方面有一些重叠。</span><br><span class="line"></span><br><span class="line">SSL本身不会给你什么 - 只是握手和加密。您需要一个应用程序来驱动SSL以完成实际工作。</span><br><span class="line"></span><br><span class="line">SSH本身可以提供许多有用的东西，允许用户执行实际工作。 SSH的两个方面是控制台登录（telnet替换）和安全文件传输（ftp替换），但你也能够隧道（安全）其他应用程序，使用户能够运行HTTP，FTP，POP3，几乎任何东西否则通过SSH隧道。</span><br><span class="line"></span><br><span class="line">没有来自应用程序的有趣流量，SSL什么都不做。如果没有来自应用程序的有趣流量，SSH会在两台主机之间建立一个加密隧道，允许您通过交互式登录shell，文件传输等完成实际工作。</span><br><span class="line"></span><br><span class="line">最后评论：HTTPS不扩展SSL，它使用SSL安全地执行HTTP。 SSH比SSL做得更多，你可以通过它隧道连接！仅仅因为SSL和SSH都可以执行TripleDES并不意味着一个基于另一个。</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -1943,202 +2141,6 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/02/26/高级算法Homework3-8-分配问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魏小威">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar_zoro2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魏小威的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/26/高级算法Homework3-8-分配问题/" itemprop="url">高级算法Homework3_1_分配问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T20:04:32+08:00">
-                2019-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/26/高级算法Homework3-8-分配问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/26/高级算法Homework3-8-分配问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>&nbsp;&nbsp;对给定的n个任务与n个人之间的成本矩阵完成成本最低的任务分配策略。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>输入：第一行为用例个数，之后为每一个用例；用例的第一行为任务个数，即n；用例的第二行为使用逗号隔开的人员完成任务的成本；每一个成本描述包括人员序号、任务序号和成本，使用空格隔开。人员序号和任务序号都是从1到n的整数，序号出现的次序没有固定规则。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输入：第一行为用例个数，之后为每一个用例；用例的第一行为任务个数，即n；用例的第二行为使用逗号隔开的人员完成任务的成本；每一个成本描述包括人员序号、任务序号和成本，使用空格隔开。人员序号和任务序号都是从1到n的整数，序号出现的次序没有固定规则。</p>
-<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1"></a>Sample Input 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">4</span><br><span class="line">2 1 6,1 2 2,1 3 7,1 4 8,1 1 9,2 2 4,2 3 3,2 4 7,3 1 5,3 2 8,3 3 1,3 4 8,4 1 7,4 2 6,4 3 9,4 4 4</span><br></pre></td></tr></table></figure>
-
-<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output 1"></a>Output 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 1 3 4</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-思路分析"><a href="#2-思路分析" class="headerlink" title="2.思路分析"></a>2.思路分析</h2><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><p>参考如下博客<br>作者：nicolas_huan<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/nicolas_huan/article/details/676" target="_blank" rel="noopener">https://blog.csdn.net/nicolas_huan/article/details/676</a></p>
-<p>&nbsp;&nbsp;由于每个人都必须分配到工作，在这里可以建一个二维数组c[i][j]，用以表示i号工人完成j号工作所需的费用。给定一个循环，从第1个工人开始循环分配工作，直到所有工人都分配到。为第i个工人分配工作时，再循环检查每个工作是否已被分配，没有则分配给i号工人，否则检查下一个工作。可以用一个一维数组x[j]来表示第j号工作是否被分配，未分配则x[j]=0，否则x[j]=1。利用回溯思想，在工人循环结束后回到上一工人，取消此次分配的工作，而去分配下一工作直到可以分配为止。这样，一直回溯到第1个工人后，就能得到所有的可行解。在检查工作分配时，其实就是判断取得可行解时的二维数组的一下标都不相同，二下标同样不相同。 </p>
-<p>&nbsp;&nbsp;我们利用count来表示当前工作成本总和，同时用res_temp来记录我们遍历到<br>的所有任务，比如前面遍历了任务2,任务1，任务3等等。然后我们拷贝该res_remp,如果当前长度达到了n（总共的任务数），若当前最小成本有不止一个解，我们需要在result里面添加符合条件的res_temp。</p>
-<p>&nbsp;&nbsp;此外还有一个重点就是多个解的排序，这里需要介绍一下Python中的list动态地根据多个列进行排序的技巧。</p>
-<h3 id="list的动态多列排序"><a href="#list的动态多列排序" class="headerlink" title="list的动态多列排序"></a>list的动态多列排序</h3><p>&nbsp;&nbsp;主要利用的是lambda表达式的eval()函数，eval函数能够把字符串编译成python代码并运行，从而达到动态根据多个列或属性排序的目的。<br><br><br>&nbsp;&nbsp;主要代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mysort</span><span class="params">(sortindex)</span>:</span></span><br><span class="line">    keyset=<span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(sortindex):</span><br><span class="line">        keyset+= <span class="string">"x["</span>+str(i)+<span class="string">"],"</span></span><br><span class="line">    keyset = keyset.rstrip(<span class="string">","</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        按照这里把我在网上找的博客https://blog.csdn.net/lianshaohua/article/details/80483357</span></span><br><span class="line"><span class="string">        里的'+',改为','就可以了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    result.sort(key=<span class="keyword">lambda</span> x:eval(keyset),reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="全部代码如下："><a href="#全部代码如下：" class="headerlink" title="全部代码如下："></a>全部代码如下：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(result)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(result[<span class="number">0</span>])):</span><br><span class="line">            <span class="keyword">if</span> i == len(result)<span class="number">-1</span> <span class="keyword">and</span> j == len(result[<span class="number">0</span>])<span class="number">-1</span>:</span><br><span class="line">                print(result[i][j])</span><br><span class="line">            <span class="keyword">elif</span> i != len(result)<span class="number">-1</span> <span class="keyword">and</span> j == len(result[<span class="number">0</span>])<span class="number">-1</span>:</span><br><span class="line">                print(result[i][j],end=<span class="string">','</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(result[i][j] , end=<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mysort</span><span class="params">(sortindex)</span>:</span></span><br><span class="line">    keyset=<span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(sortindex):</span><br><span class="line">        keyset+= <span class="string">"x["</span>+str(i)+<span class="string">"],"</span></span><br><span class="line">    keyset = keyset.rstrip(<span class="string">","</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        按照这里把我在网上找的博客https://blog.csdn.net/lianshaohua/article/details/80483357</span></span><br><span class="line"><span class="string">        里的'+',改为','就可以了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    result.sort(key=<span class="keyword">lambda</span> x:eval(keyset),reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">work</span><span class="params">( i , count , res_temp)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> cost</span><br><span class="line">    res_temp_copy = res_temp.copy()</span><br><span class="line">    <span class="keyword">if</span> i &gt; n :</span><br><span class="line">        <span class="keyword">if</span> count == cost:</span><br><span class="line">            <span class="keyword">if</span> res_temp_copy <span class="keyword">not</span> <span class="keyword">in</span> result:</span><br><span class="line">                result.append(res_temp_copy)</span><br><span class="line">        <span class="keyword">if</span> count &lt; cost:</span><br><span class="line">            result.clear()</span><br><span class="line">            result.append(res_temp_copy)</span><br><span class="line">            cost = count</span><br><span class="line">    <span class="keyword">if</span> count &lt;= cost:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> x[j] == <span class="number">0</span> :</span><br><span class="line">                res_temp.append(j)</span><br><span class="line">                x[j] = <span class="number">1</span></span><br><span class="line">                work(  i + <span class="number">1</span> , count+costMatrix[i][j] , res_temp)</span><br><span class="line">                res_temp.pop()</span><br><span class="line">                x[j] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    numOfExamples = int(input())</span><br><span class="line">    x = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>)]</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(numOfExamples):</span><br><span class="line">        n = int(input())</span><br><span class="line">        costMatrix = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        strarray = input().split(<span class="string">','</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(strarray)):</span><br><span class="line">            temp_array = []</span><br><span class="line">            tempArray = strarray[j].split(<span class="string">' '</span>)</span><br><span class="line">            costMatrix[int(tempArray[<span class="number">0</span>])][int(tempArray[<span class="number">1</span>])] = int(tempArray[<span class="number">2</span>])</span><br><span class="line">        <span class="comment"># print(costMatrix)</span></span><br><span class="line">        cost = <span class="number">0</span></span><br><span class="line">        res_temp = []</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range( <span class="number">1</span> , len(costMatrix)):</span><br><span class="line">            cost += costMatrix[i][i]</span><br><span class="line">            res_temp.append(i)</span><br><span class="line">        result.append(res_temp)</span><br><span class="line">        work(<span class="number">1</span>,<span class="number">0</span>, [])</span><br><span class="line">        mysort(len(result[<span class="number">0</span>]))</span><br><span class="line">        print1()</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2191,7 +2193,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2202,7 +2204,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2213,7 +2215,7 @@ dp[i] = max( dp[i-2]+nums[i] , dp[i-1]), i&gt;=2</code></pre><h4 id="2-1-3-代�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

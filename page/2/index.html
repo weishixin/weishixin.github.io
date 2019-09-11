@@ -233,6 +233,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/02/26/高级算法Homework3-8-分配问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏小威">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar_zoro2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魏小威的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/26/高级算法Homework3-8-分配问题/" itemprop="url">高级算法Homework3_1_分配问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T20:04:32+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/26/高级算法Homework3-8-分配问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/26/高级算法Homework3-8-分配问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>&nbsp;&nbsp;对给定的n个任务与n个人之间的成本矩阵完成成本最低的任务分配策略。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>输入：第一行为用例个数，之后为每一个用例；用例的第一行为任务个数，即n；用例的第二行为使用逗号隔开的人员完成任务的成本；每一个成本描述包括人员序号、任务序号和成本，使用空格隔开。人员序号和任务序号都是从1到n的整数，序号出现的次序没有固定规则。</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输入：第一行为用例个数，之后为每一个用例；用例的第一行为任务个数，即n；用例的第二行为使用逗号隔开的人员完成任务的成本；每一个成本描述包括人员序号、任务序号和成本，使用空格隔开。人员序号和任务序号都是从1到n的整数，序号出现的次序没有固定规则。</p>
+<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1"></a>Sample Input 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">4</span><br><span class="line">2 1 6,1 2 2,1 3 7,1 4 8,1 1 9,2 2 4,2 3 3,2 4 7,3 1 5,3 2 8,3 3 1,3 4 8,4 1 7,4 2 6,4 3 9,4 4 4</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output 1"></a>Output 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 1 3 4</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-思路分析"><a href="#2-思路分析" class="headerlink" title="2.思路分析"></a>2.思路分析</h2><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><p>参考如下博客<br>作者：nicolas_huan<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/nicolas_huan/article/details/676" target="_blank" rel="noopener">https://blog.csdn.net/nicolas_huan/article/details/676</a></p>
+<p>&nbsp;&nbsp;由于每个人都必须分配到工作，在这里可以建一个二维数组c[i][j]，用以表示i号工人完成j号工作所需的费用。给定一个循环，从第1个工人开始循环分配工作，直到所有工人都分配到。为第i个工人分配工作时，再循环检查每个工作是否已被分配，没有则分配给i号工人，否则检查下一个工作。可以用一个一维数组x[j]来表示第j号工作是否被分配，未分配则x[j]=0，否则x[j]=1。利用回溯思想，在工人循环结束后回到上一工人，取消此次分配的工作，而去分配下一工作直到可以分配为止。这样，一直回溯到第1个工人后，就能得到所有的可行解。在检查工作分配时，其实就是判断取得可行解时的二维数组的一下标都不相同，二下标同样不相同。 </p>
+<p>&nbsp;&nbsp;我们利用count来表示当前工作成本总和，同时用res_temp来记录我们遍历到<br>的所有任务，比如前面遍历了任务2,任务1，任务3等等。然后我们拷贝该res_remp,如果当前长度达到了n（总共的任务数），若当前最小成本有不止一个解，我们需要在result里面添加符合条件的res_temp。</p>
+<p>&nbsp;&nbsp;此外还有一个重点就是多个解的排序，这里需要介绍一下Python中的list动态地根据多个列进行排序的技巧。</p>
+<h3 id="list的动态多列排序"><a href="#list的动态多列排序" class="headerlink" title="list的动态多列排序"></a>list的动态多列排序</h3><p>&nbsp;&nbsp;主要利用的是lambda表达式的eval()函数，eval函数能够把字符串编译成python代码并运行，从而达到动态根据多个列或属性排序的目的。<br><br><br>&nbsp;&nbsp;主要代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mysort</span><span class="params">(sortindex)</span>:</span></span><br><span class="line">    keyset=<span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(sortindex):</span><br><span class="line">        keyset+= <span class="string">"x["</span>+str(i)+<span class="string">"],"</span></span><br><span class="line">    keyset = keyset.rstrip(<span class="string">","</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        按照这里把我在网上找的博客https://blog.csdn.net/lianshaohua/article/details/80483357</span></span><br><span class="line"><span class="string">        里的'+',改为','就可以了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    result.sort(key=<span class="keyword">lambda</span> x:eval(keyset),reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="全部代码如下："><a href="#全部代码如下：" class="headerlink" title="全部代码如下："></a>全部代码如下：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(result)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(result[<span class="number">0</span>])):</span><br><span class="line">            <span class="keyword">if</span> i == len(result)<span class="number">-1</span> <span class="keyword">and</span> j == len(result[<span class="number">0</span>])<span class="number">-1</span>:</span><br><span class="line">                print(result[i][j])</span><br><span class="line">            <span class="keyword">elif</span> i != len(result)<span class="number">-1</span> <span class="keyword">and</span> j == len(result[<span class="number">0</span>])<span class="number">-1</span>:</span><br><span class="line">                print(result[i][j],end=<span class="string">','</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(result[i][j] , end=<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mysort</span><span class="params">(sortindex)</span>:</span></span><br><span class="line">    keyset=<span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(sortindex):</span><br><span class="line">        keyset+= <span class="string">"x["</span>+str(i)+<span class="string">"],"</span></span><br><span class="line">    keyset = keyset.rstrip(<span class="string">","</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        按照这里把我在网上找的博客https://blog.csdn.net/lianshaohua/article/details/80483357</span></span><br><span class="line"><span class="string">        里的'+',改为','就可以了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    result.sort(key=<span class="keyword">lambda</span> x:eval(keyset),reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">work</span><span class="params">( i , count , res_temp)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> cost</span><br><span class="line">    res_temp_copy = res_temp.copy()</span><br><span class="line">    <span class="keyword">if</span> i &gt; n :</span><br><span class="line">        <span class="keyword">if</span> count == cost:</span><br><span class="line">            <span class="keyword">if</span> res_temp_copy <span class="keyword">not</span> <span class="keyword">in</span> result:</span><br><span class="line">                result.append(res_temp_copy)</span><br><span class="line">        <span class="keyword">if</span> count &lt; cost:</span><br><span class="line">            result.clear()</span><br><span class="line">            result.append(res_temp_copy)</span><br><span class="line">            cost = count</span><br><span class="line">    <span class="keyword">if</span> count &lt;= cost:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> x[j] == <span class="number">0</span> :</span><br><span class="line">                res_temp.append(j)</span><br><span class="line">                x[j] = <span class="number">1</span></span><br><span class="line">                work(  i + <span class="number">1</span> , count+costMatrix[i][j] , res_temp)</span><br><span class="line">                res_temp.pop()</span><br><span class="line">                x[j] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    numOfExamples = int(input())</span><br><span class="line">    x = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>)]</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(numOfExamples):</span><br><span class="line">        n = int(input())</span><br><span class="line">        costMatrix = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        strarray = input().split(<span class="string">','</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(strarray)):</span><br><span class="line">            temp_array = []</span><br><span class="line">            tempArray = strarray[j].split(<span class="string">' '</span>)</span><br><span class="line">            costMatrix[int(tempArray[<span class="number">0</span>])][int(tempArray[<span class="number">1</span>])] = int(tempArray[<span class="number">2</span>])</span><br><span class="line">        <span class="comment"># print(costMatrix)</span></span><br><span class="line">        cost = <span class="number">0</span></span><br><span class="line">        res_temp = []</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range( <span class="number">1</span> , len(costMatrix)):</span><br><span class="line">            cost += costMatrix[i][i]</span><br><span class="line">            res_temp.append(i)</span><br><span class="line">        result.append(res_temp)</span><br><span class="line">        work(<span class="number">1</span>,<span class="number">0</span>, [])</span><br><span class="line">        mysort(len(result[<span class="number">0</span>]))</span><br><span class="line">        print1()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2019/02/15/leetcode309-最佳买卖股票时机含冷冻期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -836,7 +1032,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -847,7 +1043,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -858,7 +1054,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
