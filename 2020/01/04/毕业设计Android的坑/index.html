@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web-site-logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="毕业设计,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、虹软人脸识别1. 手机拍摄图片上传到服务器，Web端提取不到人脸信息&amp;nbsp;&amp;nbsp;在Android里面，使用Camera的onPreview方法把当前帧保存为bitMap，然后转为jpeg格式的图片，上传到服务器识别，通过日志，发现提取的人脸特征数组为null。 &amp;nbsp;&amp;nbsp;原因&amp;nbsp;&amp;nbsp;虽然预览的TextureView组件里的照片是人脸向上的，但OnPre">
+<meta name="keywords" content="毕业设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="毕业设计Android的坑">
+<meta property="og:url" content="https://weishixin.github.io/2020/01/04/毕业设计Android的坑/index.html">
+<meta property="og:site_name" content="魏小威的个人博客">
+<meta property="og:description" content="一、虹软人脸识别1. 手机拍摄图片上传到服务器，Web端提取不到人脸信息&amp;nbsp;&amp;nbsp;在Android里面，使用Camera的onPreview方法把当前帧保存为bitMap，然后转为jpeg格式的图片，上传到服务器识别，通过日志，发现提取的人脸特征数组为null。 &amp;nbsp;&amp;nbsp;原因&amp;nbsp;&amp;nbsp;虽然预览的TextureView组件里的照片是人脸向上的，但OnPre">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-04T09:51:08.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="毕业设计Android的坑">
+<meta name="twitter:description" content="一、虹软人脸识别1. 手机拍摄图片上传到服务器，Web端提取不到人脸信息&amp;nbsp;&amp;nbsp;在Android里面，使用Camera的onPreview方法把当前帧保存为bitMap，然后转为jpeg格式的图片，上传到服务器识别，通过日志，发现提取的人脸特征数组为null。 &amp;nbsp;&amp;nbsp;原因&amp;nbsp;&amp;nbsp;虽然预览的TextureView组件里的照片是人脸向上的，但OnPre">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://weishixin.github.io/2020/01/04/毕业设计Android的坑/">
+
+
+
+
+
+  <title>毕业设计Android的坑 | 魏小威的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">魏小威的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weishixin.github.io/2020/01/04/毕业设计Android的坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏小威">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar_zoro2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魏小威的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">毕业设计Android的坑</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-04T17:26:25+08:00">
+                2020-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/毕设/" itemprop="url" rel="index">
+                    <span itemprop="name">毕设</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/04/毕业设计Android的坑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/04/毕业设计Android的坑/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、虹软人脸识别"><a href="#一、虹软人脸识别" class="headerlink" title="一、虹软人脸识别"></a>一、虹软人脸识别</h1><h2 id="1-手机拍摄图片上传到服务器，Web端提取不到人脸信息"><a href="#1-手机拍摄图片上传到服务器，Web端提取不到人脸信息" class="headerlink" title="1. 手机拍摄图片上传到服务器，Web端提取不到人脸信息"></a>1. 手机拍摄图片上传到服务器，Web端提取不到人脸信息</h2><p>&nbsp;&nbsp;在Android里面，使用Camera的onPreview方法把当前帧保存为bitMap，然后转为jpeg格式的图片，上传到服务器识别，通过日志，发现提取的人脸特征数组为null。</p>
+<p>&nbsp;&nbsp;<strong>原因</strong>&nbsp;&nbsp;虽然预览的TextureView组件里的照片是人脸向上的，但OnPreview函数里面的byte数组格式保存的图片信息其实是与传感器里的成像一样，是与正常照片（水平方向）顺时针旋转了90度的，因此需要在服务端顺时针再旋转279度（或者逆时针旋转90度）就可以恢复为正常正脸图片。<br>&nbsp;&nbsp;<strong>代码实例</strong>&nbsp;&nbsp;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/faceSearch"</span>, method = RequestMethod.POST, produces = &#123;<span class="string">"application/json;charset=UTF-8"</span>&#125;)</span><br><span class="line"><span class="comment">//    @RequestMapping(value = "/faceSearch", method = RequestMethod.POST)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line"><span class="comment">//    public Result&lt;FaceSearchResDto&gt; faceSearch(@RequestParam("file") String file, @RequestParam("groupId") Integer groupId) throws Exception &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result&lt;FaceSearchResDto&gt; <span class="title">faceSearch</span><span class="params">(@RequestBody FaceRecognizeVO faceRecognizeVO)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String file = faceRecognizeVO.getFile();</span><br><span class="line">        Integer groupId = faceRecognizeVO.getGroupId();</span><br><span class="line"><span class="comment">//        Integer width = faceRecognizeVO.getWidth();</span></span><br><span class="line"><span class="comment">//        Integer height = faceRecognizeVO.getHeight();</span></span><br><span class="line"><span class="comment">//        logger.info("接受到的file是："+file + "\ngroupId is :" + groupId);</span></span><br><span class="line">        <span class="keyword">if</span> (groupId == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> Results.newFailedResult(<span class="string">"groupId is null"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 原本写法----------------</span></span><br><span class="line">        String baseProcessString = base64Process(file);</span><br><span class="line">        <span class="keyword">byte</span>[] decode = Base64.decode(baseProcessString);</span><br><span class="line"><span class="comment">//        logger.info("经过base64处理过的file是：" + baseProcessString);</span></span><br><span class="line"><span class="comment">//        logger.info("decode字节数组是：" + Arrays.toString(decode));</span></span><br><span class="line">        <span class="comment">// -----------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        byte[] decode = Base64.decode(file);</span></span><br><span class="line">        BufferedImage bufImage = ImageIO.read(<span class="keyword">new</span> ByteArrayInputStream(decode));</span><br><span class="line">        <span class="comment">// 重点 旋转</span></span><br><span class="line">        bufImage = ImageUtil.rotateImage(bufImage, -<span class="number">90</span>); <span class="comment">// 将人脸逆时针放正 进行识别</span></span><br><span class="line">        ImageInfo imageInfo = ImageFactory.bufferedImage2ImageInfo(bufImage);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//人脸特征获取</span></span><br><span class="line">        <span class="keyword">byte</span>[] bytes = faceEngineService.extractFaceFeature(imageInfo);</span><br><span class="line"><span class="comment">//        byte[] bytes = faceEngineService.extractFaceFeature(decode, width, height);</span></span><br><span class="line">        logger.info(<span class="string">"提取的人脸特征字节数组是："</span> + Arrays.toString(bytes));</span><br><span class="line">        <span class="keyword">if</span> (bytes == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> Results.newFailedResult(ErrorCodeEnum.NO_FACE_DETECTED);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//人脸比对，获取比对结果</span></span><br><span class="line">        List&lt;FaceUserInfo&gt; userFaceInfoList = faceEngineService.compareFaceFeature(bytes, groupId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (CollectionUtil.isNotEmpty(processInfoList)) &#123;</span><br><span class="line">                <span class="comment">// 人脸检测</span></span><br><span class="line">                List&lt;FaceInfo&gt; faceInfoList = faceEngineService.detectFaces(imageInfo);</span><br><span class="line"><span class="comment">//                List&lt;FaceInfo&gt; faceInfoList = faceEngineService.detectFaces(bytes, width, height, ImageFormat.CP_PAF_NV21);</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> left = faceInfoList.get(<span class="number">0</span>).getRect().getLeft();</span><br><span class="line">                <span class="keyword">int</span> top = faceInfoList.get(<span class="number">0</span>).getRect().getTop();</span><br><span class="line">                <span class="keyword">int</span> width_ = faceInfoList.get(<span class="number">0</span>).getRect().getRight() - left;</span><br><span class="line">                <span class="keyword">int</span> height_ = faceInfoList.get(<span class="number">0</span>).getRect().getBottom() - top;</span><br><span class="line"></span><br><span class="line">                Graphics2D graphics2D = bufImage.createGraphics();</span><br><span class="line">                graphics2D.setColor(Color.RED); <span class="comment">//红色</span></span><br><span class="line">                BasicStroke stroke = <span class="keyword">new</span> BasicStroke(<span class="number">5f</span>);</span><br><span class="line">                graphics2D.setStroke(stroke);</span><br><span class="line">                graphics2D.drawRect(left, top, width_, height_);</span><br><span class="line">                ByteArrayOutputStream outputStream = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">                ImageIO.write(bufImage, <span class="string">"jpg"</span>, outputStream);</span><br><span class="line">                <span class="keyword">byte</span>[] bytes1 = outputStream.toByteArray();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                faceSearchResDto.setImage(<span class="string">"data:image/jpeg;base64,"</span> + Base64Utils.encodeToString(bytes1));</span><br><span class="line"></span><br><span class="line"><span class="comment">//                faceSearchResDto.setImageBytes(bytes);</span></span><br><span class="line">                faceSearchResDto.setAge(processInfoList.get(<span class="number">0</span>).getAge());</span><br><span class="line">                faceSearchResDto.setGender(processInfoList.get(<span class="number">0</span>).getGender().equals(<span class="number">1</span>) ? <span class="string">"女"</span> : <span class="string">"男"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Results.newSuccessResult(faceSearchResDto);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Results.newFailedResult(ErrorCodeEnum.FACE_DOES_NOT_MATCH);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中的处理旋转的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageUtil</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 旋转图片为指定角度</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bufferedimage</span></span><br><span class="line"><span class="comment">     *            目标图像</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> degree</span></span><br><span class="line"><span class="comment">     *            旋转角度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BufferedImage <span class="title">rotateImage</span><span class="params">(<span class="keyword">final</span> BufferedImage bufferedimage,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">final</span> <span class="keyword">int</span> degree)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> w = bufferedimage.getWidth();</span><br><span class="line">        <span class="keyword">int</span> h = bufferedimage.getHeight();</span><br><span class="line">        <span class="keyword">int</span> type = bufferedimage.getColorModel().getTransparency();</span><br><span class="line">        BufferedImage img;</span><br><span class="line">        Graphics2D graphics2d;</span><br><span class="line">        (graphics2d = (img = <span class="keyword">new</span> BufferedImage(w, h, type))</span><br><span class="line">                .createGraphics()).setRenderingHint(</span><br><span class="line">                RenderingHints.KEY_INTERPOLATION,</span><br><span class="line">                RenderingHints.VALUE_INTERPOLATION_BILINEAR);</span><br><span class="line">        graphics2d.rotate(Math.toRadians(degree), w / <span class="number">2</span>, h / <span class="number">2</span>);</span><br><span class="line">        graphics2d.drawImage(bufferedimage, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">null</span>);</span><br><span class="line">        graphics2d.dispose();</span><br><span class="line">        <span class="keyword">return</span> img;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;Android端的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initCamera</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DisplayMetrics metrics = <span class="keyword">new</span> DisplayMetrics();</span><br><span class="line">        getWindowManager().getDefaultDisplay().getMetrics(metrics);</span><br><span class="line"></span><br><span class="line">        CameraListener cameraListener = <span class="keyword">new</span> CameraListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCameraOpened</span><span class="params">(Camera camera, <span class="keyword">int</span> cameraId, <span class="keyword">int</span> displayOrientation, <span class="keyword">boolean</span> isMirror)</span> </span>&#123;</span><br><span class="line">                Camera.Size lastPreviewSize = previewSize;</span><br><span class="line">                previewSize = camera.getParameters().getPreviewSize();</span><br><span class="line"><span class="comment">//                drawHelper = new DrawHelper(previewSize.width, previewSize.height, previewView.getWidth(), previewView.getHeight(), displayOrientation</span></span><br><span class="line"><span class="comment">//                        , cameraId, isMirror, false, false);</span></span><br><span class="line"><span class="comment">//                Log.i(TAG, "onCameraOpened: " + drawHelper.toString());</span></span><br><span class="line">                <span class="comment">// 切换相机的时候可能会导致预览尺寸发生变化</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPreview</span><span class="params">(<span class="keyword">final</span> <span class="keyword">byte</span>[] nv21, Camera camera)</span> </span>&#123;</span><br><span class="line"><span class="comment">//                byte[] encode = Base64.encode(nv21, Base64.DEFAULT);</span></span><br><span class="line"><span class="comment">//                requestImageFromCamera = Arrays.toString(encode);</span></span><br><span class="line"><span class="comment">//                requestImageFromCamera = Base64.encode(nv21, Base64.DEFAULT)</span></span><br><span class="line"><span class="comment">//                requestImageFromCamera = new String(encode);</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (camera == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">                Bitmap bitmap = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//                byte[] bgr24 = null;</span></span><br><span class="line">                YuvImage img = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">byte</span>[] bytesData = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line"><span class="comment">////                    SimpleDateFormat sdf = new SimpleDateFormat("HHMMSS");</span></span><br><span class="line"><span class="comment">//                    //相机预览获取到的data数据不能直接转为bitmap存储，因为该数据是YUV格式的，需要进行数据转换</span></span><br><span class="line"><span class="comment">////                    Camera.Size size = camera.getParameters().getPreviewSize();//获得预览图像设置的尺寸</span></span><br><span class="line">                    img = <span class="keyword">new</span> YuvImage(nv21, ImageFormat.NV21, previewSize.width, previewSize.height, <span class="keyword">null</span>);</span><br><span class="line">                    ByteArrayOutputStream stream = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">                    img.compressToJpeg(<span class="keyword">new</span> Rect(<span class="number">0</span>, <span class="number">0</span>, previewSize.width, previewSize.height), <span class="number">90</span>, stream);</span><br><span class="line">                    <span class="keyword">byte</span>[] tmpBytes = stream.toByteArray();</span><br><span class="line">                    bitmap = BitmapFactory.decodeByteArray(tmpBytes,<span class="number">0</span>, tmpBytes.length);</span><br><span class="line"><span class="comment">//                    bitmap = FacePreviewFrameUtil.rotaingImageView(270, bitmap); // 本来打算 在Android端 做顺时针旋转270度的，但是发现怎么都不起作用，传过去的还是旋转了90度的图片，因此只能把图片旋转放到服务端了</span></span><br><span class="line"><span class="comment">//                    bitmap = FacePreviewFrameUtil.rotateBitmapByDegree(bitmap, 270);</span></span><br><span class="line">                    <span class="keyword">int</span> options = <span class="number">100</span>;</span><br><span class="line">                    <span class="keyword">while</span> (stream.toByteArray().length / <span class="number">1024</span> &gt; <span class="number">1000</span>) &#123; <span class="comment">//循环判断如果压缩后图片是否大于1000kb,大于继续压缩</span></span><br><span class="line">                        stream.reset(); <span class="comment">// 重置stream 即清空stream</span></span><br><span class="line">                        bitmap.compress(Bitmap.CompressFormat.JPEG, options, stream); <span class="comment">//这里压缩options%，把压缩后的数据存放到stream中</span></span><br><span class="line">                        options -= <span class="number">10</span>; <span class="comment">// 每次减少10</span></span><br><span class="line"><span class="comment">//                        Log.d(TAG, "自己数组长度为： "+ stream.toByteArray().length);</span></span><br><span class="line">                    &#125;</span><br><span class="line"><span class="comment">//                    Log.d(TAG, "自己数组长度为： "+ stream.toByteArray().length);</span></span><br><span class="line">                    <span class="comment">// 将bitmap 转成为 bgr24格式的图片数据</span></span><br><span class="line"><span class="comment">//                    bgr24 = ArcSoftImageUtil.createImageData(bitmap.getWidth(), bitmap.getHeight(), ArcSoftImageFormat.BGR24);</span></span><br><span class="line"><span class="comment">//                    int transformCode = ArcSoftImageUtil.bitmapToImageData(bitmap, bgr24, ArcSoftImageFormat.BGR24);</span></span><br><span class="line"><span class="comment">//                    if (transformCode != ArcSoftImageUtilError.CODE_SUCCESS) &#123;</span></span><br><span class="line"><span class="comment">//                        Log.e(TAG, "transform failed, code is " + transformCode);</span></span><br><span class="line"><span class="comment">//                        return;</span></span><br><span class="line"><span class="comment">//                    &#125;</span></span><br><span class="line">                    bitmap.compress(Bitmap.CompressFormat.JPEG, <span class="number">80</span>, stream);</span><br><span class="line">                    bytesData = stream.toByteArray();</span><br><span class="line">                    stream.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception exception) &#123;</span><br><span class="line">                    Log.e(TAG, <span class="string">"Exception : "</span> + exception.getMessage());</span><br><span class="line">                &#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">                <span class="keyword">if</span> (bytesData == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"><span class="comment">//                requestImageFromCamera = Base64.encodeToString(nv21, Base64.DEFAULT);</span></span><br><span class="line">                requestImageFromCamera = Base64.encodeToString(bytesData, Base64.NO_WRAP);</span><br><span class="line">                requestImageFromCamera = <span class="string">"data:image/jpeg;base64,"</span> + requestImageFromCamera;</span><br><span class="line"><span class="comment">//                requestImageFromCamera = Base64.encodeToString(bgr24, Base64.NO_WRAP);</span></span><br><span class="line"><span class="comment">//                MyLogUtil.d(TAG, "requestImageFromCamera length is " + requestImageFromCamera.length());</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//                Log.i(TAG,"requestImageFromCamera is " + requestImageFromCamera);</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCameraClosed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.i(TAG, <span class="string">"onCameraClosed: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCameraError</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">                Log.i(TAG, <span class="string">"onCameraError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCameraConfigurationChanged</span><span class="params">(<span class="keyword">int</span> cameraID, <span class="keyword">int</span> displayOrientation)</span> </span>&#123;</span><br><span class="line"><span class="comment">//                if (drawHelper != null) &#123;</span></span><br><span class="line"><span class="comment">//                    drawHelper.setCameraDisplayOrientation(displayOrientation);</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line">                Log.i(TAG, <span class="string">"onCameraConfigurationChanged: "</span> + cameraID + <span class="string">"  "</span> + displayOrientation);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        cameraHelper = <span class="keyword">new</span> CameraHelper.Builder()</span><br><span class="line">                .previewViewSize(<span class="keyword">new</span> Point(previewView.getMeasuredWidth(), previewView.getMeasuredHeight()))</span><br><span class="line">                .rotation(getWindowManager().getDefaultDisplay().getRotation())</span><br><span class="line">                .specificCameraId(rgbCameraID != <span class="keyword">null</span> ? rgbCameraID : Camera.CameraInfo.CAMERA_FACING_FRONT)</span><br><span class="line">                .isMirror(<span class="keyword">false</span>)</span><br><span class="line">                .previewOn(previewView)</span><br><span class="line">                .cameraListener(cameraListener)</span><br><span class="line">                .build();</span><br><span class="line">        cameraHelper.init();</span><br><span class="line">        cameraHelper.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initView</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        previewView = findViewById(R.id.single_camera_texture_preview);</span><br><span class="line">        <span class="comment">//在布局结束后才做初始化操作</span></span><br><span class="line">        previewView.getViewTreeObserver().addOnGlobalLayoutListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        editText_register_name = findViewById(R.id.et_name);</span><br><span class="line">        textView_recognize_name = findViewById(R.id.tv_test_result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 点击识别响应方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recognize</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        String url = <span class="string">"http://172.19.135.76:8089/faceSearch"</span>;</span><br><span class="line"><span class="comment">//        String url = "http://192.168.31.38:8089/faceSearch";</span></span><br><span class="line">        OkHttpClient client = <span class="keyword">new</span> OkHttpClient();</span><br><span class="line">        String requestParam = <span class="string">"&#123;\"file\":\""</span>+ requestImageFromCamera +<span class="string">"\",\"groupId\":101&#125;"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> MediaType JSON = MediaType.parse(<span class="string">"application/json; charset=utf-8"</span>); <span class="comment">//数据类型为json格式，</span></span><br><span class="line">        <span class="keyword">final</span> RequestBody requestBody = RequestBody.create(JSON, requestParam);</span><br><span class="line">        <span class="keyword">final</span> Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">                .url(url)</span><br><span class="line">                .post(requestBody)</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        client.newCall(request).enqueue(<span class="keyword">new</span> Callback() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call call, IOException e)</span> </span>&#123;</span><br><span class="line">                Message msg = <span class="keyword">new</span> Message();</span><br><span class="line">                msg.what = Recognize_Error;</span><br><span class="line">                uiHandler.sendMessage(msg);</span><br><span class="line">                Log.i(TAG, <span class="string">"异步访问发送失败"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call call, Response response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">                <span class="keyword">final</span> String responseBody = response.body().string();</span><br><span class="line">                Log.i(TAG, <span class="string">"responseBody是 "</span> + responseBody);</span><br><span class="line">                FaceSearchResDTO faceSearchResult = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">if</span> (response.isSuccessful()) &#123;</span><br><span class="line">                    Log.i(TAG, <span class="string">"我进来了"</span>);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        JSONObject jsonObject = <span class="keyword">new</span> JSONObject(responseBody);</span><br><span class="line">                        String data = jsonObject.get(<span class="string">"data"</span>).toString();</span><br><span class="line">                        faceSearchResult = (<span class="keyword">new</span> Gson()).fromJson(data, FaceSearchResDTO.class);</span><br><span class="line">                        Log.i(TAG, faceSearchResult.getName());</span><br><span class="line"></span><br><span class="line">                        Message msg = <span class="keyword">new</span> Message();</span><br><span class="line">                        msg.what = Recognize_Success;</span><br><span class="line">                        msg.obj = faceSearchResult.getName();</span><br><span class="line">                        uiHandler.sendMessage(msg);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (JSONException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    Message msg = <span class="keyword">new</span> Message();</span><br><span class="line">                    msg.what = Recognize_Fail;</span><br><span class="line">                    uiHandler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, <span class="string">"sorry, it's wrong, the response is "</span> + response.toString());</span><br><span class="line">                &#125;</span><br><span class="line">                response.body().close(); <span class="comment">// 防止 response body is not closed warning</span></span><br><span class="line">                call.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/毕业设计/" rel="tag"># 毕业设计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/11/小米2019软件开发笔试-模拟2048/" rel="next" title="小米2019软件开发笔试-模拟2048">
+                <i class="fa fa-chevron-left"></i> 小米2019软件开发笔试-模拟2048
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar_zoro2.png" alt="魏小威">
+            
+              <p class="site-author-name" itemprop="name">魏小威</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到魏小威的新世界！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、虹软人脸识别"><span class="nav-number">1.</span> <span class="nav-text">一、虹软人脸识别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-手机拍摄图片上传到服务器，Web端提取不到人脸信息"><span class="nav-number">1.1.</span> <span class="nav-text">1. 手机拍摄图片上传到服务器，Web端提取不到人脸信息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏小威</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'QHkja7fxLTPQXla2mSubcEXX-gzGzoHsz',
+        appKey: 'oUeTLS75sgNKw5WUdti67I0C',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
